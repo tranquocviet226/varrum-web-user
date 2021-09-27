@@ -1,0 +1,49 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint:recommended",
+    "tslint-eslint-rules",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-react-hooks"
+  ],
+  "jsRules": {},
+  "rules": {
+    "no-empty-interface": true,
+    "interface-name": true,
+    "object-literal-shorthand": [false, "never"],
+    "indent": [true, "spaces"],
+    "quotemark": [true, "single"],
+    "no-var-requires": false,
+    "member-ordering": [false],
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false,
+    "no-console": [true],
+    "no-consecutive-blank-lines": [false],
+    "no-string-literal": false,
+    "arrow-parens": [false],
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false,
+    "no-empty": false,
+    "space-before-function-paren": false,
+    "whitespace": true,
+    "jsx-no-lambda": false,
+    "jsx-boolean-value": false,
+    "no-unused-variable": [
+      false,
+      {
+        "ignore-pattern": "^_"
+      }
+    ],
+    "ordered-imports": [
+      false,
+      {
+        "import-sources-order": "lowercase-last",
+        "named-imports-order": "lowercase-first"
+      }
+    ]
+  },
+  "linterOptions": {
+    "exclude": ["**/*.js", "node_modules"]
+  }
+}

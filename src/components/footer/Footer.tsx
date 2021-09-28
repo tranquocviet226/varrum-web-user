@@ -1,41 +1,74 @@
 import { Link } from 'react-router-dom'
 import Grid from '../grid/Grid'
 
+
+
 const footerAboutLinks = [
   {
-    display: 'Giới thiệu',
+    display: 'Latest Reviews',
     path: '/about'
   },
   {
-    display: 'Liên hệ',
+    display: 'PC',
     path: '/about'
   },
   {
-    display: 'Tuyển dụng',
+    display: ' PS4',
     path: '/about'
   },
   {
-    display: 'Tin tức',
+    display: ' Xbox One',
     path: '/about'
   },
   {
-    display: 'Hệ thống cửa hàng',
+    display: 'Wii U',
     path: '/about'
   }
 ]
 
 const footerCustomerLinks = [
   {
-    display: 'Chính sách đổi trả',
+    display: 'Fallout 4 Show',
     path: '/about'
   },
   {
-    display: 'Chính sách bảo hành',
+    display: 'GameSpot News',
     path: '/about'
   },
   {
-    display: 'Chính sách hoàn tiền',
+    display: 'GameSpot of Thrones',
     path: '/about'
+  },
+  {
+    display: 'New Releases',
+    path: '/about'
+  },
+  {
+    display: 'Now Playing',
+    path: '/about'
+  }
+]
+const footerNav = [
+  {
+    display: 'PRIVACY POLICY',
+    path: '/'
+  },
+  {
+    display: 'AD CHOICE',
+    path: '/games'
+  },
+  {
+    display: 'TERMS OF USE',
+    path: '/accessories'
+  },
+  {
+    display: 'HELP',
+    path: '/contact'
+  }
+  ,
+  {
+    display: 'ADVERTISE',
+    path: '/contact'
   }
 ]
 const Footer = () => {
@@ -44,21 +77,27 @@ const Footer = () => {
       <div className='container'>
         <Grid col={4} mdCol={2} smCol={1} gap={10}>
           <div>
-            <div className='footer__title'>Tổng đài hỗ trợ</div>
+            <div className='footer__title'>REVIEWS</div>
             <div className='footer__content'>
               <p>
-                Liên hệ đặt hàng <strong>0123456789</strong>
+                Latest Reviews
               </p>
               <p>
-                Thắc mắc đơn hàng <strong>0123456789</strong>
+                PC
               </p>
               <p>
-                Góp ý, khiếu nại <strong>0123456789</strong>
+                PS4
+              </p>
+              <p>
+                Xbox One
+              </p>
+              <p>
+                Wii U
               </p>
             </div>
           </div>
           <div>
-            <div className='footer__title'>Về Yolo</div>
+            <div className='footer__title'>NEWS</div>
             <div className='footer__content'>
               {footerAboutLinks.map((item, index) => (
                 <p key={index}>
@@ -68,7 +107,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <div className='footer__title'>Chăm sóc khách hàng</div>
+            <div className='footer__title'>SHOWS</div>
             <div className='footer__content'>
               {footerCustomerLinks.map((item, index) => (
                 <p key={index}>
@@ -78,25 +117,65 @@ const Footer = () => {
             </div>
           </div>
           <div className='footer__about'>
-            <p>
-              <Link to='/'>
-                <img
-                  src={
-                    'https://www.pngkit.com/png/full/374-3741084_techday-tech-png-logo.png'
-                  }
-                  className='footer__logo'
-                  alt=''
-                />
-              </Link>
-            </p>
-            <p>
-              Hướng đến mục tiêu mang lại niềm vui ăn mặc mới mỗi ngày cho hàng
-              triệu người tiêu dùng Việt. Hãy cùng Yolo hướng đến một cuộc sống
-              năng động, tích cực hơn.
-            </p>
+            <div>
+              <div className='footer__title'>COMMUNITRY</div>
+              <div className='footer__content'>
+                <p>
+                  Forums
+                </p>
+                <p>
+                  Communitry Blog
+                </p>
+                <p>
+
+                  <i className='bx bxl-facebook'>    facebook.com/redzon</i>
+
+                </p>
+                <p>
+                  <i className='bx bxl-twitter'>    twitter.com/redzone</i>
+
+                </p>
+                <p>
+
+                  <i className='bx bxl-twitter'>    twitter.tv/redzone</i>
+
+                </p>
+              </div>
+            </div>
           </div>
         </Grid>
+        {/* end footer */}
+
+
       </div>
+      <div className='footer__line'></div>
+
+      <div className="footerNav">
+        <div className='footer__logo'>
+          <Link to='/'>
+            <img
+              src={
+                'https://www.pngkit.com/png/full/374-3741084_techday-tech-png-logo.png'
+              }
+              alt=''
+            />
+          </Link>
+        </div>
+
+        <span className="footerNav__content">
+          @ 2020 DailyMagz. Design by PhuonggNam
+        </span>
+
+        {
+          footerNav.map((item, index) => (
+            <p key={index}>
+              <Link to={item.path}>{item.display}</Link>
+            </p>
+          ))
+        }
+      </div>
+
+
     </footer>
   )
 }

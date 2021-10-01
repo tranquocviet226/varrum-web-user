@@ -1,0 +1,100 @@
+.all__card {
+  &__container {
+    margin-bottom: 12px;
+    position: relative;
+    display: flex;
+    border-radius: 4px;
+    @include tablet {
+      border-radius: 16px;
+    }
+    @include mobile {
+      border-radius: 16px;
+    }
+  }
+  &__category {
+    color: $main-txt-dark;
+    display: flex;
+    opacity: 0.9;
+  }
+  &__overlay {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    padding: 0 8px 0 8px;
+    border-radius: 4px;
+    @include tablet {
+      border-radius: 16px;
+      padding: 0 16px 0 16px;
+    }
+    @include mobile {
+      border-radius: 16px;
+      padding: 0 8px 0 8px;
+    }
+    &__title {
+      line-height: 1.5;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    &__title:hover {
+      color: $main-orange-light;
+    }
+    &__description {
+      margin-top: 16px;
+    }
+    &__author {
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+      @include mobile {
+        font-size: 10px;
+      }
+      &__icon {
+        margin-right: 8px;
+        @include mobile {
+          margin-right: 4px;
+        }
+      }
+      .icon_user {
+        color: $main-orange-light;
+      }
+    }
+  }
+  &__image {
+    &__container {
+      width: 50%;
+      overflow: hidden;
+      border-radius: 16px;
+      @include tablet {
+        border-radius: 16px;
+      }
+      @include mobile {
+        border-radius: 8px;
+      }
+    }
+    &__background {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1.8;
+      object-fit: cover;
+      display: block;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      -webkit-transition: 0.3s ease-in-out;
+      transition: 0.3s ease-in-out;
+    }
+    &__background:hover {
+      -webkit-transform: scale(1.25);
+      transform: scale(1.3);
+    }
+  }
+}

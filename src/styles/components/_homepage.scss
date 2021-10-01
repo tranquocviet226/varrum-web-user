@@ -1,0 +1,35 @@
+.homepage__container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  @include tablet {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.homepage__body {
+  padding: 32px;
+  @include tablet {
+    padding: 16px;
+  }
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.homepage__section {
+  margin: 32px 32px 0 0;
+  @include tablet {
+    margin: 16px 16px 0 16px;
+    border-radius: 16px;
+  }
+  @include mobile {
+    margin: 16px 16px 0 16px;
+  }
+}
+
+.random__post__container {
+  padding: 16px;
+}

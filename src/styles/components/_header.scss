@@ -1,16 +1,27 @@
 .header {
-  background-color: $main-bg;
+  &__main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 16px;
+    @include mobile {
+      padding-left: 8px;
+    }
+  }
+
+  @include theme-aware('background', 'color-header');
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 99;
-  height: 90px;
+  height: $header-height;
   transition: height 0.3s ease;
 
   @include tablet {
     height: $header-tablet-height;
-    box-shadow: $box-shadow;
+    @include theme-aware('box-shadow', 'color-shadow');
   }
 
   @include mobile {
@@ -21,86 +32,131 @@
     height: 100%;
   }
 
-  // &.shrink {
-  //   height: $header-shrink-height;
-  //   box-shadow: $box-shadow;
-  //   z-index: 100;
+  &.shrink {
+    height: $header-shrink-height;
+    @include theme-aware('box-shadow', 'color-shadow');
+    z-index: 100;
 
-  //   @include mobile {
-  //     height: $header-mobile-height;
-  //   }
-  // }
-
-  &__logo {
-    width: 100%;
-
-    img {
-      height: 28px;
+    @include mobile {
+      height: $header-mobile-height;
     }
   }
 
-  &__menudown {
+  &__logo {
     @include flex(center, space-between);
-    height: 70px;
-    font-size: 1.2rem;
+    left: 8px;
+    width: 170px;
+    img {
+      height: 35px;
+    }
+  }
 
-    &__item ~ &__item {
-      margin-left: 39px;
+  &__right {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    &__item {
+      height: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      @include flex(center, center);
 
       @include tablet {
-        margin-left: 20px;
       }
-
       @include mobile {
-        margin-left: 10px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+  &__menu {
+    @include flex(center, center);
+    height: 100%;
+    font-size: 24px;
+
+    @include tablet {
+      font-size: 13px;
+    }
+    @include mobile {
+      font-size: 13px;
+    }
+
+    &__item {
+      @include theme-aware('color', 'color-icon');
+      border-radius: 16px;
+      height: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-right: 8px;
+      margin-left: 8px;
+      @include flex(center, center);
+      &__link {
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include tablet {
+          height: auto;
+        }
+        @include mobile {
+          height: auto;
+        }
+      }
+      &__txt {
+        display: none;
+        margin-left: 8px;
+        @include tablet {
+          width: 40px;
+          display: inline;
+          font-size: 13px;
+        }
+
+        @include mobile {
+          width: 40px;
+          display: inline;
+          font-size: 13px;
+        }
+      }
+    }
+    &__item ~ &__item {
+      @include tablet {
+      }
+      @include mobile {
       }
     }
 
     &__item.active {
       font-weight: 600;
-      background-color: $main-orange-dark;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
+      @include theme-aware('background-color', 'color-bg-item');
+      @include theme-aware('box-shadow', 'color-shadow');
+      color: $main-bg-light;
+    }
+    &__item.active:hover {
+      @include theme-aware('background-color', 'color-bg-item');
     }
 
     &__item:hover {
-      color: $main-color;
-    }
-
-    &__left,
-    &__right {
-      @include flex(center, center);
-      height: 100%;
-    }
-
-    &__right {
-      font-size: 1.15rem;
-
-      span {
-        margin-right: 30px;
-        color: $txt-second-color;
-      }
-      a {
-        color: white;
-      }
-
-      @include mobile {
-        font-size: 1.5rem;
-      }
+      @include theme-aware('background-color', 'color-bg-hover');
     }
 
     &__left {
       @include flex(center, center);
+      height: 100%;
+    }
+
+    &__left {
       &__close {
         display: none;
       }
 
       @include tablet {
         flex-direction: column;
-        background-color: $main-bg;
+        @include theme-aware('background', 'color-background');
         position: absolute;
         left: 0;
         top: 0;
@@ -115,6 +171,10 @@
           transform: translateX(0);
         }
 
+        &__item {
+          height: auto;
+          padding: 4px 30px 4px 30px;
+        }
         &__item ~ &__item {
           margin-left: unset;
           margin-top: 20px;
@@ -124,7 +184,7 @@
           display: block;
           position: absolute;
           left: 20px;
-          font-size: 2.5rem;
+          font-size: 20px;
         }
       }
     }
@@ -133,93 +193,21 @@
       display: none;
 
       @include tablet {
+        display: inline;
+        position: absolute;
+        font-size: 16px;
+        left: 60px;
+      }
+      @include mobile {
         display: block;
-        font-size: 2.5rem;
+        position: absolute;
+        font-size: 16px;
+        left: 52px;
       }
     }
   }
-
-  &__line__bottom {
-    width: 100%;
-
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    height: 5px;
+  &__line {
+    height: 3px;
     background-color: $main-orange-dark;
-    opacity: 0.7;
-    top: 200px;
-    left: 0;
-  }
-  &__menuup {
-    width: 100%;
-    height: 130px;
-
-    &__top {
-      width: 100%;
-      height: 130px;
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      @include flex(center, space-between);
-
-      img {
-        height: 40px;
-        padding: 0 180px;
-        margin-top: 10px;
-        @include mobile {
-          height: 20px;
-        }
-      }
-      &__btn {
-        @include flex(center, center);
-        margin-right: 175px;
-        border-radius: 4px;
-        align-items: center;
-
-        &__login {
-          color: #ffffff;
-          padding: 0.8rem 1.5rem;
-          text-transform: uppercase;
-          font-size: 1.3rem;
-          font-weight: 700;
-          position: relative;
-          width: 130px;
-          height: 100%;
-          border: 2px solid rgba(250, 246, 246, 0.5);
-        }
-        &__signup {
-          width: 130px;
-          margin-left: 30px;
-          padding: 0.8rem 1.5rem;
-          text-transform: uppercase;
-          font-size: 1.3rem;
-          font-weight: 700;
-          align-items: center;
-          position: relative;
-          background-color: #ff6956;
-          height: 100%;
-        }
-      }
-      &__search {
-        color: red;
-        font-weight: 400;
-        font-size: 2rem;
-        i {
-          right: 590px;
-          top: 52px;
-          position: absolute;
-        }
-        input {
-          width: 370px;
-          padding: 0.7rem 1rem;
-          font-size: 1.2rem;
-        }
-      }
-    }
-    &__top:first-child {
-      background: rgb(19, 22, 39);
-      background: linear-gradient(90deg, rgb(26, 26, 27) 13%, rgb(124, 123, 108) 100%);
-    }
   }
 }

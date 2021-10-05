@@ -1,6 +1,14 @@
 .footer {
-  padding-top: 70px;
-  box-shadow: $box-shadow;
+  padding: 40px 16px;
+  @include theme-aware('box-shadow', 'color-shadow');
+  font-size: 1.1rem;
+  @include mobile {
+    padding: 20px 8px;
+  }
+  &__logo {
+    height: 38px;
+  }
+
   &__about {
     p {
       margin-bottom: 2rem;
@@ -9,70 +17,13 @@
 
   &__title {
     text-transform: uppercase;
-    margin-bottom: 3rem;
-    font-weight: 600;
-    font-size: 2rem;
-  }
-  &__title::before {
-    content: "";
-    position: absolute;
-    width: 4%;
-    height: 0.3rem;
-    bottom: -305px;
-    background-color: #e61414;
+    margin-bottom: 2rem;
+    font-weight: 700;
   }
 
   &__content {
     p {
-      margin-bottom: 1.5rem;
-      color: $txt-second-color;
-      font-size: 1.3rem;
-    }
-  }
-  &__line {
-    height: 5px;
-    background-color: #e61414;
-    opacity: 0.7;
-    margin-top: 8rem;
-  }
-  &__logo {
-    inset: 0;
-    @include flex(center, space-between);
-    pointer-events: none;
-    img {
-      height: 28px;
-      @include mobile {
-      }
-    }
-  }
-}
-.footerNav {
-  background-color: #131313;
-  width: 100%;
-
-  padding: 0 130px;
-  margin: auto;
-  height: 70px;
-  font-size: 1.1rem;
-
-  @include mobile {
-    margin-right: 0px;
-    font-size: 4.5rem;
-    padding: 0 0px;
-    padding: 0 24px;
-  }
-  @include flex(center, space-between);
-  span {
-    margin-right: 350px;
-    @include mobile {
-      margin-left: 15px;
-      font-size: 1.2rem;
-      margin-right: 17px;
-    }
-  }
-  p {
-    @include mobile {
-      display: none;
+      margin-bottom: 1.25rem;
     }
   }
 }

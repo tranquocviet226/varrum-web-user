@@ -1,74 +1,41 @@
 import { Link } from 'react-router-dom'
 import Grid from '../grid/Grid'
 
-
-
 const footerAboutLinks = [
   {
-    display: 'Latest Reviews',
+    display: 'Grand Theft Auto V',
     path: '/about'
   },
   {
-    display: 'PC',
+    display: 'Watch dogs 2',
     path: '/about'
   },
   {
-    display: ' PS4',
+    display: 'Far cry 5',
     path: '/about'
   },
   {
-    display: ' Xbox One',
+    display: 'Call of duty: Warzone',
     path: '/about'
   },
   {
-    display: 'Wii U',
+    display: 'Ghensin impact',
     path: '/about'
   }
 ]
 
 const footerCustomerLinks = [
   {
-    display: 'Fallout 4 Show',
+    display: 'Chia sẻ source code hack NASA',
     path: '/about'
   },
   {
-    display: 'GameSpot News',
+    display: 'Kỹ thuật chế tạo tên lửa',
     path: '/about'
   },
   {
-    display: 'GameSpot of Thrones',
+    display: 'Bí ẩn vũ trụ: Phần 2 Mặt trăng',
     path: '/about'
-  },
-  {
-    display: 'New Releases',
-    path: '/about'
-  },
-  {
-    display: 'Now Playing',
-    path: '/about'
-  }
-]
-const footerNav = [
-  {
-    display: 'PRIVACY POLICY',
-    path: '/'
-  },
-  {
-    display: 'AD CHOICE',
-    path: '/games'
-  },
-  {
-    display: 'TERMS OF USE',
-    path: '/accessories'
-  },
-  {
-    display: 'HELP',
-    path: '/contact'
-  }
-  ,
-  {
-    display: 'ADVERTISE',
-    path: '/contact'
   }
 ]
 const Footer = () => {
@@ -79,25 +46,13 @@ const Footer = () => {
           <div>
             <div className='footer__title'>REVIEWS</div>
             <div className='footer__content'>
-              <p>
-                Latest Reviews
-              </p>
-              <p>
-                PC
-              </p>
-              <p>
-                PS4
-              </p>
-              <p>
-                Xbox One
-              </p>
-              <p>
-                Wii U
-              </p>
+              <p>Laptop Acer aspire 7 A42</p>
+              <p>Grand Theft Auto V</p>
+              <p>Dell Latitude E6430</p>
             </div>
           </div>
           <div>
-            <div className='footer__title'>NEWS</div>
+            <div className='footer__title'>GAMES</div>
             <div className='footer__content'>
               {footerAboutLinks.map((item, index) => (
                 <p key={index}>
@@ -107,7 +62,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <div className='footer__title'>SHOWS</div>
+            <div className='footer__title'>FORUMS</div>
             <div className='footer__content'>
               {footerCustomerLinks.map((item, index) => (
                 <p key={index}>
@@ -117,65 +72,24 @@ const Footer = () => {
             </div>
           </div>
           <div className='footer__about'>
-            <div>
-              <div className='footer__title'>COMMUNITRY</div>
-              <div className='footer__content'>
-                <p>
-                  Forums
-                </p>
-                <p>
-                  Communitry Blog
-                </p>
-                <p>
-
-                  <i className='bx bxl-facebook'>    facebook.com/redzon</i>
-
-                </p>
-                <p>
-                  <i className='bx bxl-twitter'>    twitter.com/redzone</i>
-
-                </p>
-                <p>
-
-                  <i className='bx bxl-twitter'>    twitter.tv/redzone</i>
-
-                </p>
-              </div>
-            </div>
+            <p>
+              <Link to='/'>
+                <img
+                  src={
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnsHnZBa8xuKaVeV5yxw-YF-0PJV1EPyizisluGNvBxlMAp2CsP_fi57qc3fUzDzJHtz4&usqp=CAU'
+                  }
+                  className='footer__logo'
+                  alt=''
+                />
+              </Link>
+            </p>
+            <p>
+              Diễn đàng bí ẩn Varrum. Nơi chia sẻ kiến thức vật lý, vũ trụ, bí
+              ẩn, công nghệ, con người.
+            </p>
           </div>
         </Grid>
-        {/* end footer */}
-
-
       </div>
-      <div className='footer__line'></div>
-
-      <div className="footerNav">
-        <div className='footer__logo'>
-          <Link to='/'>
-            <img
-              src={
-                'https://www.pngkit.com/png/full/374-3741084_techday-tech-png-logo.png'
-              }
-              alt=''
-            />
-          </Link>
-        </div>
-
-        <span className="footerNav__content">
-          @ 2020 DailyMagz. Design by PhuonggNam
-        </span>
-
-        {
-          footerNav.map((item, index) => (
-            <p key={index}>
-              <Link to={item.path}>{item.display}</Link>
-            </p>
-          ))
-        }
-      </div>
-
-
     </footer>
   )
 }

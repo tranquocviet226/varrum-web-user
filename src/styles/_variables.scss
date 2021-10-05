@@ -1,23 +1,10 @@
-$main-bg: #03040d;
-$main-bg-white: #fffeff;
 $main-color: #4267b2;
-
 $main-orange-dark: #e61414;
 $main-orange-light: #f85710;
-
-$txt-main-color: #000;
 $txt-second-color: #8d8d8d;
 $txt-white: #fff;
-
 $btn-main-bg: $main-color;
 $btn-main-color: #fff;
-
-$header-height: 170px;
-$header-tablet-height: 70px;
-$header-mobile-height: 40px;
-$header-shrink-height: 70px;
-
-$box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 $colors: (
   'blue': #4267b2,
@@ -27,6 +14,51 @@ $colors: (
   'black': #000,
   'main': $main-color,
   'red': #ff0000
+);
+// -----------------
+$main-bg-dark: #191b1f;
+$main-txt-dark: #e4e6eb;
+$main-header-dark: #242526;
+$main-bg-hover-dark: #303338;
+$main-icon-dark: #e4e6eb;
+$main-gray-dark: #1d1e22;
+$box-shadow-dark: rgba(255, 255, 255, 0.3) 0px 0px 3px;
+
+// -------------------
+$main-bg-light: #f0f2f5;
+$main-txt-light: #1c1e21;
+$main-header-light: #ffffff;
+$main-bg-hover-light: #ebedf0;
+$main-icon-light: #65676b;
+$box-shadow-light: rgba(0, 0, 0, 0.3) 0px 0px 3px;
+
+// -------------------
+$header-height: 70px;
+$header-tablet-height: 60px;
+$header-mobile-height: 40px;
+$header-shrink-height: 60px;
+
+$themes: (
+  light: (
+    color-background: $main-bg-light,
+    color-txt: $main-txt-light,
+    color-icon: $main-icon-light,
+    color-header: $main-header-light,
+    color-bg-hover: $main-bg-hover-light,
+    color-bg-item: $main-orange-dark,
+    color-shadow: $box-shadow-light,
+    color-gray: $main-txt-dark
+  ),
+  dark: (
+    color-background: $main-bg-dark,
+    color-txt: $main-txt-dark,
+    color-icon: $main-icon-dark,
+    color-header: $main-header-dark,
+    color-bg-hover: $main-bg-hover-dark,
+    color-bg-item: $main-orange-dark,
+    color-shadow: $box-shadow-dark,
+    color-gray: $main-gray-dark
+  )
 );
 
 $mobile-width: 600px;

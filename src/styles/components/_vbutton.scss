@@ -1,0 +1,20 @@
+.vbutton {
+  &__container {
+    width: 100%;
+    padding: 8px;
+    color: $main-txt-dark;
+    background-image: linear-gradient(
+      to right,
+      $main-orange-dark,
+      $main-orange-light
+    );
+    border-radius: 4px;
+    @include flex(center, center);
+    @include theme-aware('box-shadow', 'color-shadow');
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+.vbutton__all__post {
+  width: 100px;
+}

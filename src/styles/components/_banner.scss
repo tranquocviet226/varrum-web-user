@@ -1,0 +1,82 @@
+.banner {
+  &__container {
+    position: relative;
+  }
+  &__overlay {
+    height: 40%;
+    cursor: pointer;
+    border-radius: 0px 0px 36px 36px;
+    @include tablet {
+      border-radius: 0px 0px 32px 32px;
+    }
+    @include mobile {
+      border-radius: 0px 0px 24px 24px;
+    }
+
+    position: absolute;
+    bottom: 0;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.6)
+    );
+    color: $main-txt-dark;
+    width: 100%;
+    transition: 0.5s ease;
+    opacity: 1;
+    font-size: 20px;
+    padding: 0 40px 0 40px;
+    &__container {
+      position: absolute;
+      bottom: 12px;
+    }
+    &__title {
+      color: $main-txt-dark;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    &__title:hover {
+      color: $main-orange-light;
+    }
+    &__author {
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+      @include mobile {
+        font-size: 10px;
+      }
+      &__icon {
+        margin-right: 8px;
+        @include mobile {
+          margin-right: 4px;
+        }
+      }
+      .icon_user {
+        color: $main-orange-light;
+      }
+    }
+  }
+  &__image__background {
+    width: 100%;
+    cursor: pointer;
+    height: auto;
+    aspect-ratio: 2.5;
+    object-fit: cover;
+    display: block;
+    border-radius: 36px;
+    @include tablet {
+      border-radius: 32px;
+    }
+    @include mobile {
+      border-radius: 16px;
+    }
+    @include theme-aware('box-shadow', 'color-shadow');
+  }
+}

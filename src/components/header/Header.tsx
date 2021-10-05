@@ -1,51 +1,38 @@
-import { Button } from '@mui/material'
-import { useRef, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
-
-import logo from '../../assets/boxicons-2.0.9/svg/black-banner.png'
 
 const mainNav = [
   {
     display: 'HOME',
+    class: 'bx bxs-home',
     path: '/'
   },
   {
     display: 'NEWS',
+    class: 'bx bxs-news',
+    path: '/news'
+  },
+  {
+    display: 'GAMES',
+    class: 'bx bxs-game',
     path: '/games'
   },
   {
     display: 'REVIEWS',
-    path: '/accessories'
+    class: 'bx bxs-videos',
+    path: '/reviews'
   },
   {
-    display: 'ENTERTAINMENT',
-    path: '/contact'
-  }
-  ,
-  {
-    display: 'HARDWARE',
-    path: '/HARDWARE'
-  }
-  ,
-  {
-    display: 'PAGE',
-    path: '/PAGE'
-
-  }
-  ,
-  {
-    display: 'VIDEO',
-    path: '/VIDEO'
+    display: 'FORUMS',
+    class: 'bx bx-git-repo-forked',
+    path: '/forums'
   }
 ]
 
-const mainNav1 = [
-  {
-    display: 'ENGLIGH',
-    path: '/contact'
-  }
-]
+const themes = {
+  light: 'theme-light',
+  dark: 'theme-dark'
+}
 
 const Header = (props: any) => {
   const { pathname } = useLocation()
@@ -67,7 +54,7 @@ const Header = (props: any) => {
       }
     })
     return () => {
-      window.removeEventListener('scroll', () => { })
+      window.removeEventListener('scroll', () => {})
     }
   }, [])
 
@@ -77,76 +64,88 @@ const Header = (props: any) => {
     if (menuLeft.current) menuLeft.current.classList.toggle('active')
   }
 
+  const [themeMode, setThemeMode] = useState(themes.dark)
+
+  const handleChangeTheme = () => {
+    switch (themeMode) {
+      case themes.dark:
+        setThemeMode(themes.light)
+        break
+      case themes.light:
+        setThemeMode(themes.dark)
+        break
+      default:
+        setThemeMode(themes.dark)
+        break
+    }
+  }
+
+  useEffect(() => {
+    document.documentElement.className = ''
+    document.documentElement.classList.add(themeMode)
+  }, [themeMode])
+
   return (
     <div className='header' ref={headerRef}>
-      <div className='container'>
-        <div className='header__menuup'>
-          <div className="header__menuup__top">
-            <div className='header__menuup__top__icon'>
-              <Link to='/'>
-                <img
-                  src={
-                    'https://www.pngkit.com/png/full/374-3741084_techday-tech-png-logo.png'
-                  }
-                  alt=''
-                />
-              </Link>
-            </div>
-            <div className='header__menuup__top__search'>
-              <input type="text" placeholder="Seach here..." />
-              <i className='bx bx-search'></i>
-            </div>
-            <div className="header__menuup__top__btn">
-              <div className="header__menuup__top__btn__login">
-                <a href="#" className="btn btn-hover">
-                  <span>LOG IN</span>
-                </a>
-              </div>
-              <div className="header__menuup__top__btn__signup">
-                <a href="#" className="btn btn-hover">
-                  <span>Sign up</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
+      <div className='container header__main'>
+        <div className='header__logo'>
+          <Link to='/'>
+            <img
+              src={
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Android_O_Preview_Logo.png/600px-Android_O_Preview_Logo.png'
+              }
+              alt=''
+            />
+          </Link>
         </div>
-        <div className='header__menudown'>
-          <div className='header__menudown__mobile-toggle' onClick={menuToggle}>
-            <i className='bx bx-menudown-alt-left'></i>
+        <div className='header__menu'>
+          <div className='header__menu__mobile-toggle' onClick={menuToggle}>
+            <i className='bx bx-menu'></i>
           </div>
-          <div className='header__menudown__left' ref={menuLeft}>
-            <div className='header__menudown__left__close' onClick={menuToggle}>
+          <div className='header__menu__left' ref={menuLeft}>
+            <div className='header__menu__left__close' onClick={menuToggle}>
               <i className='bx bx-chevron-left'></i>
             </div>
             {mainNav.map((item, index) => (
-              <div
+              <Link
                 key={index}
-                className={`header__menudown__item header__menudown__left__item ${index === activeNav ? 'active' : ''
-                  }`}
-                onClick={menuToggle}
+                to={item.path}
+                className='header__menu__item__link'
               >
-                <Link to={item.path}>
-                  <span>{item.display}</span>
-                </Link>
-              </div>
+                <div
+                  key={index}
+                  className={`header__menu__item header__menu__left__item ${
+                    index === activeNav ? 'active' : ''
+                  }`}
+                  onClick={menuToggle}
+                >
+                  <i className={item.class}></i>
+                  <span className='header__menu__item__txt'>
+                    {' '}
+                    {item.display}
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
-          <div className='header__menudown__right'>
-            <span>Choose your language</span>
-            {
-              mainNav1.map((item, index) => (
-                <p key={index}>
-                  <Link to={item.path}>{item.display}</Link>
-                  <i className='bx bx-chevron-down'></i>
-                </p>
-              ))
-            }
+        </div>
+        <div className='header__right'>
+          <div className='header__right__item'>
+            <Link to='/profile'>
+              <i className='bx bx-user'></i>
+            </Link>
+          </div>
+          <div className='header__right__item'>
+            <Link to='/notifications'>
+              <i className='bx bx-bell'></i>
+            </Link>
+          </div>
+          <div className='header__right__item'>
+            <i onClick={handleChangeTheme} className='bx bxs-cog'></i>
           </div>
         </div>
-        <div className='header__line__bottom'></div>
       </div>
-
+      <div className='header__line' />
     </div>
   )
 }

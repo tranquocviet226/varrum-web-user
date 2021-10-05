@@ -1,36 +1,37 @@
+import { Link } from 'react-router-dom'
+import { IPost } from '../../../../../common/interfaces/post/IPost'
+import { getPhotoUrl } from '../../../../../common/untils/functons'
 import AuthorDateViews from '../../../../../components/authoDateViews/AuthorDateViews'
 import CategoryCard from '../../../../../components/categoryCard/CategoryCard'
 
-const categories = [
-  { id: 1, title: 'Game', color: 'red' },
-  { id: 2, title: 'Thế giới mở', color: 'orange' }
-]
-
-const post = {
-  id: 1,
-  title: 'GTA V full crack (việt hóa)',
-  img: 'https://i.pinimg.com/originals/cd/7f/92/cd7f922b19cd8f433790c9381e43bdef.jpg',
-  author: 'VietTQ',
-  date: '2021-10-05',
-  views: 3554
+interface Props {
+  post: IPost
 }
 
-const Banner = () => {
+const Banner = ({ post }: Props) => {
   return (
     <div className='banner__container'>
-      <img className='banner__image__background' src={post.img} alt=''></img>
+      <Link to={post.id}>
+        <img
+          className='banner__image__background'
+          src={getPhotoUrl(post.photo.name)}
+          alt=''
+        ></img>
+      </Link>
       <div className='banner__overlay'>
         <div className='banner__overlay__container'>
           <div style={{ display: 'flex' }}>
-            {categories.map((item) => (
+            {post.categories.map((item) => (
               <CategoryCard key={item.id} item={item} />
             ))}
           </div>
-          <div style={{ marginTop: 8 }}>
-            <span className='banner__overlay__title'>{post.title}</span>
-          </div>
+          <Link to={post.id}>
+            <div style={{ marginTop: 8 }}>
+              <span className='banner__overlay__title'>{post.title}</span>
+            </div>
+          </Link>
           <AuthorDateViews
-            author={post.author}
+            author={post.author.fullname}
             date={post.date}
             views={post.views}
           />

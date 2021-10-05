@@ -1,7 +1,12 @@
+import { IPost } from '../../../../../common/interfaces/post/IPost'
 import Title from '../../../../../components/title/Title'
 import RandomSlider from '../slider/RandomSlider'
 
-const RandomPost = () => {
+interface Props {
+  posts: IPost[]
+}
+
+const RandomPost = ({ posts }: Props) => {
   return (
     <div>
       <div className='trending__title__container'>
@@ -10,7 +15,7 @@ const RandomPost = () => {
           <span>Xem thêm</span>
         </div>
       </div>
-      <RandomSlider />
+      <RandomSlider posts={posts} />
     </div>
   )
 }

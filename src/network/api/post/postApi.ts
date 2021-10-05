@@ -1,11 +1,14 @@
-import instance from "../../intercepter"
+import { IParamsPaginate } from '../../../common/interfaces/IParamsPaginate'
+import { ICreatePost } from '../../../common/interfaces/post/ICreatePost'
+import instance from '../../intercepter'
 
-class PostApi {
-    getListPost = (request) =>
-        instance.get('posts', {
-            params: request
-        })
-
+class PostApis {
+  getListPost = (params?: IParamsPaginate) =>
+    instance.get('posts', {
+      params: params
+    })
+  showListPost = (id: string) => instance.get(`posts/${id}`)
+  createPost = (post: ICreatePost) => instance.post('posts', post)
 }
 
-export const UsersApi = new PostApi()
+export const PostApi = new PostApis()

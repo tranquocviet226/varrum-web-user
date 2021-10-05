@@ -4,13 +4,15 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import './styles/index.scss'
 import './assets/boxicons-2.0.9/css/boxicons.min.css'
-import 'slick-carousel/slick/slick-theme.css'
-import 'slick-carousel/slick/slick.css'
+import { Provider } from 'react-redux'
+import { store } from './redux/store/store'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 )
 

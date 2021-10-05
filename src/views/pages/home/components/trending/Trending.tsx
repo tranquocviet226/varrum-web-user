@@ -1,7 +1,12 @@
+import { IPost } from '../../../../../common/interfaces/post/IPost'
 import Title from '../../../../../components/title/Title'
 import TrendingSlider from '../slider/TrendingSlider'
 
-const Trending = () => {
+interface Props {
+  posts: IPost[]
+}
+
+const Trending = ({ posts }: Props) => {
   return (
     <div>
       <div className='trending__title__container'>
@@ -10,7 +15,7 @@ const Trending = () => {
           <span>Xem thêm</span>
         </div>
       </div>
-      <TrendingSlider />
+      <TrendingSlider posts={posts} />
     </div>
   )
 }

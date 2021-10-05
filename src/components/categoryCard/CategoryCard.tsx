@@ -1,5 +1,7 @@
+import { ICategory } from '../../common/interfaces/category/ICategory'
+
 type Props = {
-  item: any
+  item: ICategory
 }
 
 const CategoryCard = ({ item }: Props) => {
@@ -8,7 +10,7 @@ const CategoryCard = ({ item }: Props) => {
       className='category__card__container'
       style={{ backgroundColor: item.color }}
     >
-      <span>{item.title}</span>
+      <span>{item.name}</span>
     </div>
   )
 }

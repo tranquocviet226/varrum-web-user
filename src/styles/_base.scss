@@ -89,3 +89,33 @@ img {
 .grid {
   display: grid;
 }
+
+.categories__container {
+  display: flex;
+  color: $main-txt-dark;
+}
+.vinput {
+  padding: 8px;
+  width: 100%;
+  @include theme-aware('color', 'color-txt');
+  @include theme-aware('background-color', 'color-background');
+  border: 1px solid rgba($color: gray, $alpha: 1);
+}
+.vinput:focus {
+  border: 1px solid $main-orange-dark;
+  box-shadow: 0 0 1px $main-orange-dark;
+  outline-offset: 0px;
+  outline: none;
+}
+.select__container:hover {
+  border: none;
+}
+.select__container:focus-visible {
+}
+
+.mt-1 {
+  margin-top: 8px;
+}
+.mt-2 {
+  margin-top: 16px;
+}

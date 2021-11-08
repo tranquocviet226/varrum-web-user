@@ -6,6 +6,10 @@ class CategoryApis {
     instance.get('categories', {
       params: params
     })
+  getForumsCategory = (params?: IParamsPaginate) =>
+    instance.get('forums-categories', {
+      params: params
+    })
 }
 
 export const CategoryApi = new CategoryApis()

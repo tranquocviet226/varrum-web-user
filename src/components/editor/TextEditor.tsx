@@ -1,83 +1,89 @@
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import { useDispatch } from 'react-redux'
 import { getPhotoUrl, parseError } from '../../common/untils/functons'
-import { actionSetNotification } from '../../redux/actions/notification/notificationAction'
 import { actionUploadPhoto } from '../../redux/actions/photo/photoAction'
+import VButton from '../button/VButton'
 
 interface Props {
+  content?: string
+  handleSubmit?: (val: string) => void
   handleChangeContent?: (val: string) => void
 }
 
 let quillObj: any = null
 
-const TextEditor = ({ handleChangeContent }: Props) => {
-  const dispatch = useDispatch()
-  const handleUpload = async (file: File) => {
-    const response = await actionUploadPhoto(file)
-    if (!response.errorType && quillObj) {
-      const range = quillObj?.getEditorSelection()
-      const imageUrl = getPhotoUrl(response.name)
+const handleUpload = async (file: File) => {
+  const response = await actionUploadPhoto(file)
+  if (!response.errorType && quillObj) {
+    const range = quillObj?.getEditorSelection()
+    const imageUrl = getPhotoUrl(response.name)
 
-      quillObj?.getEditor().insertEmbed(range.index, 'image', imageUrl)
-    } else {
-      dispatch(actionSetNotification(true, parseError(response)))
+    quillObj?.getEditor().insertEmbed(range.index, 'image', imageUrl)
+  } else {
+    console.log(parseError(response))
+  }
+}
+
+const imageHandler = () => {
+  if (quillObj) {
+    const input = document.createElement('input')
+
+    input.setAttribute('type', 'file')
+    input.setAttribute('accept', 'image/*')
+    input.click()
+
+    input.onchange = async () => {
+      var file: any = input.files[0]
+      handleUpload(file)
+    }
+  } else {
+    console.log('quill no found')
+  }
+}
+
+const modules = {
+  toolbar: {
+    container: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ align: [] }],
+      ['link', 'image', 'video'],
+      ['clean'],
+      [{ color: [] }]
+    ],
+    handlers: {
+      image: imageHandler
     }
   }
+}
 
-  const imageHandler = () => {
+const TextEditor = ({ content, handleSubmit, handleChangeContent }: Props) => {
+  const handleSubmitEditor = () => {
     if (quillObj) {
-      const input = document.createElement('input')
-
-      input.setAttribute('type', 'file')
-      input.setAttribute('accept', 'image/*')
-      input.click()
-
-      input.onchange = async () => {
-        var file: any = input.files[0]
-        handleUpload(file)
-      }
-    } else {
-      dispatch(actionSetNotification(true, 'Ôi!, có lỗi rồi'))
-    }
-  }
-
-  let delayTimer: any
-  const onChangeContent = (val: string) => {
-    clearTimeout(delayTimer)
-    delayTimer = setTimeout(function () {
-      handleChangeContent(val)
-    }, 1000)
-  }
-
-  const modules = {
-    toolbar: {
-      container: [
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        ['bold', 'italic', 'underline'],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        [{ align: [] }],
-        ['link', 'image'],
-        ['clean'],
-        [{ color: [] }]
-      ],
-      handlers: {
-        image: imageHandler
-      }
+      const value = quillObj?.value
+      handleSubmit(value)
     }
   }
 
   return (
-    <ReactQuill
-      ref={(el) => {
-        quillObj = el
-      }}
-      onChange={onChangeContent}
-      defaultValue={''}
-      placeholder={'Enter new content here...'}
-      modules={modules}
-      style={{ height: 400 }}
-    />
+    <>
+      <ReactQuill
+        ref={(el) => {
+          quillObj = el
+        }}
+        onChange={handleChangeContent}
+        value={content}
+        placeholder={'Enter new content here...'}
+        modules={modules}
+        style={{ height: 580 }}
+      />
+      <VButton
+        style={{ marginTop: 64 }}
+        onClick={handleSubmitEditor}
+        title='Đăng bài'
+      />
+    </>
   )
 }
 

@@ -3,6 +3,7 @@ import { NotificationTypes } from '../../actions/notification/notificationTypes'
 
 const initialState = {
   open: false,
+  notiType: undefined,
   message: ''
 }
 
@@ -14,6 +15,7 @@ const notificationReducer = (
     case ENotificationActions.SET_NOTIFICATION:
       return Object.assign({}, state, {
         open: action.open,
+        notiType: action.notiType,
         message: action.message
       })
 

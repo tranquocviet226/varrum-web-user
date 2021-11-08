@@ -37,6 +37,13 @@
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+      @include tablet {
+        -webkit-line-clamp: 3;
+      }
     }
     &__title:hover {
       color: $main-orange-light;

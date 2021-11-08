@@ -8,13 +8,21 @@
       $main-orange-dark,
       $main-orange-light
     );
-    border-radius: 4px;
+    border-radius: 8px;
+    border: none;
     @include flex(center, center);
     @include theme-aware('box-shadow', 'color-shadow');
     font-weight: 600;
     cursor: pointer;
   }
+  &__container:hover {
+    opacity: 0.9;
+  }
 }
 .vbutton__all__post {
   width: 100px;
+}
+.vbutton__trending {
+  width: 75px;
+  font-size: 10px;
 }

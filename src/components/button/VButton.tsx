@@ -1,17 +1,25 @@
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLButtonElement> {
   title?: string
   className?: string
   onClick?: () => void
+  type?: 'button' | 'submit' | 'reset'
 }
-const VButton = ({ title, className, onClick, ...rest }: Props) => {
+const VButton = ({
+  title,
+  type = 'button',
+  className,
+  onClick,
+  ...rest
+}: Props) => {
   return (
-    <div
+    <button
+      type={type}
       onClick={onClick}
       className={`vbutton__container ${className}`}
       {...rest}
     >
       {title}
-    </div>
+    </button>
   )
 }
 

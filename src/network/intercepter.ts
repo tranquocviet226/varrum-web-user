@@ -19,14 +19,11 @@ instance.interceptors.response.use(
     if (response) return response
   },
   (error: AxiosError) => {
-    if (error.response) {
+    if (error.response || error.request) {
       throw error.response
     }
     if (error.message && error.message === 'Network Error') {
       throw error
-    }
-    if (error.request) {
-      throw error.response
     }
     throw error
   }

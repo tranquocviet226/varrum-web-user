@@ -1,111 +1,89 @@
-import moment from 'moment'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { ICategory } from '../../../common/interfaces/category/ICategory'
-import { parseError } from '../../../common/untils/functons'
-import VButton from '../../../components/button/VButton'
-import TextEditor from '../../../components/editor/TextEditor'
-import VInput from '../../../components/input/VInput'
-import VSelect from '../../../components/select/VSelect'
-import { UploadApi } from '../../../network/api/upload/uploadApi'
-import { configResponse } from '../../../network/responsive'
-import { actionGetListCategory } from '../../../redux/actions/category/categoryAction'
-import { actionSetNotification } from '../../../redux/actions/notification/notificationAction'
-import { actionCreatePost } from '../../../redux/actions/post/postAction'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { bannerImgName } from '../../../common/constants/constants'
+import { ECategory } from '../../../common/enums/ECategory'
+import { IPost } from '../../../common/interfaces/post/IPost'
+import VPagination from '../../../components/pagination/VPagination'
+import Title from '../../../components/title/Title'
+import { EPaginateActions } from '../../../redux/actions/pagination/EPaginateActions'
+import { actionPaginate } from '../../../redux/actions/pagination/paginateAction'
+import { EPostActions } from '../../../redux/actions/post/EPostActions'
+import { actionFetchPosts } from '../../../redux/actions/post/postAction'
+import { AppState } from '../../../redux/reducers/rootReducer'
+import Ads1 from '../home/components/ads/Ads1'
+import NewPost from '../home/components/new/NewPost'
+import NewsPostCard from './components/CategoryPostCard'
 
 const NewsPage = () => {
   const dispatch = useDispatch()
-  const [categories, setCategories] = useState<ICategory[]>([])
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [content, setContent] = useState('')
-  const [categoriesId, setCategoriesId] = useState<string[]>([])
-  const [photoId, setPhotoId] = useState('')
+  const state = useSelector((state: AppState) => state)
+  const newsPostsData = state.posts.newsPosts
 
-  const handleChangeContent = (content: string) => {
-    setContent(content)
-  }
+  const newsPosts = state.posts.newsPosts.content
+  const categories = state.categoriesReducer.categories
+  const newsPostsRandom = state.posts.newsPostsRandom.content
+  const page = state.paginate.paginateNews
 
-  const handleChangeTitle = (val: string) => {
-    setTitle(val)
-  }
+  const newsCategory = categories.find(
+    (category) => category?.name === ECategory.NEWS
+  )
 
-  const handleChangeDescription = (val: string) => {
-    setDescription(val)
-  }
-
-  const handleChangeCategory = (value: string[]) => {
-    let data = []
-    value?.map((val: string) => {
-      const result = categories.find((category) => category.name === val)
-      data.push(result.id)
-    })
-    setCategoriesId(data)
-  }
-
-  const handleSelectFile = async (file: File) => {
-    const response = await UploadApi.upload(file)
-    const data = configResponse(response)
-    if (!data?.errorType) {
-      setPhotoId(data.id)
-    } else {
-      dispatch(actionSetNotification(true, parseError(data)))
+  useEffect(() => {
+    const params = {
+      page: page,
+      limit: 20,
+      condition: `categories.id = "${newsCategory?.id}"`,
+      orderBy: 'posts.createdAt',
+      orderDirection: 'DESC'
     }
-  }
+    dispatch(actionFetchPosts(EPostActions.FETCH_NEWS_POSTS, params))
+  }, [dispatch, page, newsCategory])
 
-  const handleSubmit = async () => {
-    const value = {
-      title,
-      description,
-      content,
-      photo_id: photoId,
-      categories_id: categoriesId,
-      date: moment().format()
-    }
-
-    const data = await actionCreatePost(value)
-    if (!data.errorType) window.location.replace('/')
-    else {
-      dispatch(actionSetNotification(true, parseError(data)))
-    }
+  const onPaginate = (page: number) => {
+    dispatch(actionPaginate(EPaginateActions.PAGINATE_NEWS, page))
   }
 
   useEffect(() => {
-    const getListCategory = async () => {
-      const data = await actionGetListCategory()
-      if (!data.errorType) {
-        setCategories(data.content)
-      } else {
-        dispatch(actionSetNotification(true, parseError(data)))
-      }
+    const params = {
+      page: 1,
+      limit: 5,
+      condition: `categories.id = "${newsCategory?.id}"`,
+      orderBy: 'posts.createdAt',
+      orderDirection: 'DESC',
+      random: true
     }
-    getListCategory()
-  }, [dispatch])
+    dispatch(actionFetchPosts(EPostActions.FETCH_NEWS_POSTS_RANDOM, params))
+  }, [dispatch, categories, newsCategory])
 
   return (
-    <div style={{ padding: 8 }}>
-      <VInput
-        placeHolder='Tiêu đề'
-        onChangeValue={handleChangeTitle}
-        style={{ marginBottom: 8 }}
-      />
-      <VInput
-        placeHolder='Mô tả'
-        onChangeValue={handleChangeDescription}
-        style={{ marginBottom: 8 }}
-      />
-      <VSelect
-        categories={categories}
-        onChangeCategory={handleChangeCategory}
-      />
-      <input
-        type='file'
-        onChange={(e) => handleSelectFile(e.target.files[0])}
-      />
-      <div className='mt-1'></div>
-      <TextEditor handleChangeContent={handleChangeContent} />
-      <div style={{ marginBottom: 48 }}></div>
-      <VButton onClick={handleSubmit} title='Đăng bài' />
+    <div>
+      <div className='newspage__container'>
+        <div className='newspage__body'>
+          <Title title={ECategory.NEWS} />
+          {newsPosts.length > 0 ? (
+            <div className='newspage__content'>
+              {newsPosts.map((post: IPost) => (
+                <NewsPostCard key={post.id} post={post} route='news' />
+              ))}
+            </div>
+          ) : null}
+          <div
+            style={{ display: 'flex', justifyContent: 'center', marginTop: 16 }}
+          >
+            <VPagination
+              defaultPage={page}
+              count={newsPostsData?.totalPages}
+              onChange={(_event, val) => onPaginate(val)}
+            />
+          </div>
+        </div>
+        <div className='newspage__section'>
+          {newsPostsRandom?.length >= 0 ? (
+            <NewPost title='Bài viết liên quan' posts={newsPostsRandom} />
+          ) : null}
+        </div>
+      </div>
+      <Ads1 urlName={bannerImgName[1]} style={{ height: 180 }} />
     </div>
   )
 }

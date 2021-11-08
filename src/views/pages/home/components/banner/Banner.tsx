@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { IPost } from '../../../../../common/interfaces/post/IPost'
 import { getPhotoUrl } from '../../../../../common/untils/functons'
+import { linkToPosts } from '../../../../../common/untils/general'
 import AuthorDateViews from '../../../../../components/authoDateViews/AuthorDateViews'
 import CategoryCard from '../../../../../components/categoryCard/CategoryCard'
 
@@ -9,9 +10,10 @@ interface Props {
 }
 
 const Banner = ({ post }: Props) => {
+  const link = linkToPosts(post.id)
   return (
     <div className='banner__container'>
-      <Link to={post.id}>
+      <Link to={link}>
         <img
           className='banner__image__background'
           src={getPhotoUrl(post.photo.name)}
@@ -25,7 +27,7 @@ const Banner = ({ post }: Props) => {
               <CategoryCard key={item.id} item={item} />
             ))}
           </div>
-          <Link to={post.id}>
+          <Link to={link}>
             <div style={{ marginTop: 8 }}>
               <span className='banner__overlay__title'>{post.title}</span>
             </div>

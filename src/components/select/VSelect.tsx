@@ -7,25 +7,35 @@ import { ICategory } from '../../common/interfaces/category/ICategory'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   categories: ICategory[]
+  value?: string[]
+  multiple?: boolean
   onChangeCategory: (value: string | string[]) => void
 }
 
-export default function VSelect({ categories, onChangeCategory }: Props) {
-  const [personName, setPersonName] = React.useState<string[]>([])
+const VSelect = ({
+  categories,
+  value,
+  multiple = true,
+  onChangeCategory
+}: Props) => {
+  const [selectedValues, setSelectedValues] = React.useState<string[]>([])
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = (event: SelectChangeEvent<typeof selectedValues>) => {
     const {
       target: { value }
     } = event
-
     onChangeCategory(value)
-    setPersonName(typeof value === 'string' ? value.split(',') : value)
+    setSelectedValues(typeof value === 'string' ? value.split(',') : value)
   }
+
+  React.useEffect(() => {
+    if (value && value.length > 0) setSelectedValues(value)
+  }, [value])
 
   return (
     <Select
-      multiple
-      value={personName}
+      multiple={multiple}
+      value={selectedValues}
       onChange={handleChange}
       renderValue={(selected) => (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -35,6 +45,7 @@ export default function VSelect({ categories, onChangeCategory }: Props) {
         </Box>
       )}
       style={{ width: '100%', height: 40 }}
+      className='vselect__style'
     >
       {categories.map((item) => (
         <MenuItem key={item.id} value={item.name}>
@@ -44,3 +55,5 @@ export default function VSelect({ categories, onChangeCategory }: Props) {
     </Select>
   )
 }
+
+export default VSelect

@@ -1,44 +1,13 @@
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { IPost } from '../../common/interfaces/post/IPost'
+import { linkToPosts } from '../../common/untils/general'
+import { AppState } from '../../redux/reducers/rootReducer'
 import Grid from '../grid/Grid'
 
-const footerAboutLinks = [
-  {
-    display: 'Grand Theft Auto V',
-    path: '/about'
-  },
-  {
-    display: 'Watch dogs 2',
-    path: '/about'
-  },
-  {
-    display: 'Far cry 5',
-    path: '/about'
-  },
-  {
-    display: 'Call of duty: Warzone',
-    path: '/about'
-  },
-  {
-    display: 'Ghensin impact',
-    path: '/about'
-  }
-]
-
-const footerCustomerLinks = [
-  {
-    display: 'Chia sẻ source code hack NASA',
-    path: '/about'
-  },
-  {
-    display: 'Kỹ thuật chế tạo tên lửa',
-    path: '/about'
-  },
-  {
-    display: 'Bí ẩn vũ trụ: Phần 2 Mặt trăng',
-    path: '/about'
-  }
-]
 const Footer = () => {
+  const postState = useSelector((state: AppState) => state.posts)
+  const posts = postState.randomPosts.content
   return (
     <footer className='footer'>
       <div className='container'>
@@ -46,17 +15,19 @@ const Footer = () => {
           <div>
             <div className='footer__title'>REVIEWS</div>
             <div className='footer__content'>
-              <p>Laptop Acer aspire 7 A42</p>
-              <p>Grand Theft Auto V</p>
-              <p>Dell Latitude E6430</p>
+              {posts.slice(0, 5).map((item: IPost, index) => (
+                <p key={index} className='footer__item__title'>
+                  <Link to={linkToPosts(item.id)}>{item.title}</Link>
+                </p>
+              ))}
             </div>
           </div>
           <div>
             <div className='footer__title'>GAMES</div>
             <div className='footer__content'>
-              {footerAboutLinks.map((item, index) => (
-                <p key={index}>
-                  <Link to={item.path}>{item.display}</Link>
+              {posts.slice(5, 10).map((item: IPost, index) => (
+                <p key={index} className='footer__item__title'>
+                  <Link to={linkToPosts(item.id)}>{item.title}</Link>
                 </p>
               ))}
             </div>
@@ -64,23 +35,18 @@ const Footer = () => {
           <div>
             <div className='footer__title'>FORUMS</div>
             <div className='footer__content'>
-              {footerCustomerLinks.map((item, index) => (
-                <p key={index}>
-                  <Link to={item.path}>{item.display}</Link>
+              {posts.slice(10, 15).map((item: IPost, index) => (
+                <p key={index} className='footer__item__title'>
+                  <Link to={linkToPosts(item.id)}>{item.title}</Link>
                 </p>
               ))}
             </div>
           </div>
           <div className='footer__about'>
             <p>
-              <Link to='/'>
-                <img
-                  src={
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnsHnZBa8xuKaVeV5yxw-YF-0PJV1EPyizisluGNvBxlMAp2CsP_fi57qc3fUzDzJHtz4&usqp=CAU'
-                  }
-                  className='footer__logo'
-                  alt=''
-                />
+              <Link to='/' style={{ display: 'flex', alignItems: 'center' }}>
+                <i className='bx bx-code-alt header__logo'></i>
+                <span className='header__name '>Varum</span>
               </Link>
             </p>
             <p>

@@ -22,16 +22,27 @@ $main-header-dark: #242526;
 $main-bg-hover-dark: #303338;
 $main-icon-dark: #e4e6eb;
 $main-gray-dark: #1d1e22;
-$box-shadow-dark: rgba(255, 255, 255, 0.3) 0px 0px 3px;
-
+$box-shadow-dark: 0 12px 28px 0 rgba(0, 0, 0, 0.2),
+  0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+$shadow-dark: 0 2px 4px 0 rgba(0, 0, 0, 0.03), 0 2px 4px 0 rgba(0, 0, 0, 0.03),
+  inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 // -------------------
 $main-bg-light: #f0f2f5;
 $main-txt-light: #1c1e21;
 $main-header-light: #ffffff;
 $main-bg-hover-light: #ebedf0;
 $main-icon-light: #65676b;
-$box-shadow-light: rgba(0, 0, 0, 0.3) 0px 0px 3px;
-
+$main-gray-1: #373737;
+$box-shadow-light: 0 12px 28px 0 rgba(0, 0, 0, 0.2),
+  0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+$shadow-light: 0 2px 4px 0 rgba(0, 0, 0, 0.03), 0 2px 4px 0 rgba(0, 0, 0, 0.03),
+  inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+// ------------
+$txt-gradient: linear-gradient(
+  90deg,
+  $main-orange-dark 0%,
+  $main-orange-light 100%
+);
 // -------------------
 $header-height: 70px;
 $header-tablet-height: 60px;
@@ -45,9 +56,13 @@ $themes: (
     color-icon: $main-icon-light,
     color-header: $main-header-light,
     color-bg-hover: $main-bg-hover-light,
+    bg-hover-icon: #cccccc,
     color-bg-item: $main-orange-dark,
     color-shadow: $box-shadow-light,
-    color-gray: $main-txt-dark
+    color-gray: $main-txt-dark,
+    color-bg-icon-right: $main-txt-dark,
+    color-border: 1px solid $main-bg-hover-light,
+    color-shadow-regular: $shadow-light
   ),
   dark: (
     color-background: $main-bg-dark,
@@ -55,9 +70,13 @@ $themes: (
     color-icon: $main-icon-dark,
     color-header: $main-header-dark,
     color-bg-hover: $main-bg-hover-dark,
+    bg-hover-icon: #4a4a4a,
     color-bg-item: $main-orange-dark,
     color-shadow: $box-shadow-dark,
-    color-gray: $main-gray-dark
+    color-gray: $main-gray-dark,
+    color-bg-icon-right: $main-gray-1,
+    color-border: 4px solid $main-bg-dark,
+    color-shadow-regular: $shadow-dark
   )
 );
 

@@ -9,8 +9,16 @@ export interface IPost {
   description: string
   date: string
   views: number
+  likes: number
+  userLike: boolean
+  commentCount: number
   hash_tag: string
   photo: IPhoto
   categories: ICategory[]
   author: IAuthor
+  createdAt: Date
+  updatedAt: Date
+  errorType: string
+  message: string[]
+  timestamp: string
 }

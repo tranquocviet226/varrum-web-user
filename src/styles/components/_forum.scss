@@ -1,0 +1,301 @@
+.forum {
+  &__card {
+    &__container {
+      @include theme-aware('background-color', 'color-header');
+      @include theme-aware('box-shadow', 'color-shadow-regular');
+      margin-top: 12px;
+      border-radius: 8px;
+      padding: 12px;
+      @include flex(center, space-between);
+      @include mobile {
+        flex-direction: column;
+      }
+    }
+    &__content__container {
+      width: 50%;
+      @include theme-aware('border-right', 'color-border');
+      @include flex(center, left);
+      @include mobile {
+        width: 100%;
+        border-right: none !important;
+      }
+    }
+    &__title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-left: 16px;
+      cursor: pointer;
+    }
+    &__title:hover {
+      color: $main-orange-dark;
+    }
+    &__description {
+      margin-top: 6px;
+      margin-left: 16px;
+      margin-right: 8px;
+      @include mobile {
+        margin-top: 4px;
+      }
+    }
+    &__img {
+      width: 80px;
+      height: 80px;
+      border-radius: 4px;
+      object-fit: cover;
+      @include mobile {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    &__right {
+      width: 50%;
+      padding: 8px;
+      @include mobile {
+        width: 100%;
+      }
+      &__ic {
+        font-size: 18px;
+        margin-right: 4px;
+      }
+      &__topic {
+        @include flex(center, space-between);
+      }
+      &__title {
+        font-size: 13px;
+        @include flex(center, center);
+        @include mobile {
+          font-size: 11px;
+        }
+      }
+      &__txt {
+        font-weight: 600;
+        @include mobile {
+          font-size: 13px;
+        }
+      }
+      &__post {
+        margin-top: 4px;
+        &__txt {
+          font-size: 13px;
+          @include mobile {
+            font-size: 11px;
+          }
+        }
+        &__title {
+          font-weight: 600;
+          @include flex(center, left);
+          @include mobile {
+            font-size: 13px;
+          }
+        }
+        &__icon {
+          font-size: 18px;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+  &__content__container {
+    margin-top: 16px;
+  }
+
+  &__post {
+    &__container {
+      margin-top: 16px;
+      border-radius: 8px;
+      padding: 4px;
+      @include theme-aware('background-color', 'color-header');
+    }
+  }
+
+  &__category {
+    &__container {
+      @include theme-aware('background-color', 'color-header');
+      @include theme-aware('box-shadow', 'color-shadow-regular');
+      margin-bottom: 16px;
+      border-radius: 8px;
+      padding: 16px;
+      @include mobile {
+        padding: 8px;
+      }
+    }
+    &__comment {
+      font-weight: 600;
+      opacity: 0.9;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      @include flex(center, space-around);
+      &__container {
+        @include flex(center, center);
+        padding: 6px 8px 6px 8px;
+        cursor: pointer;
+        border-radius: 4px;
+        width: 100%;
+      }
+      &__container:hover {
+        @include theme-aware('background-color', 'color-bg-hover');
+      }
+      &__ic {
+        font-size: 20px;
+        margin-right: 8px;
+      }
+    }
+    &__title {
+      font-weight: 700;
+      cursor: pointer;
+    }
+    &__content {
+      margin: 2px 0px 10px 0px;
+    }
+    &__avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 16px;
+      border: 1px solid gray;
+      @include mobile {
+        width: 40px;
+        height: 40px;
+      }
+      &__container {
+        margin-bottom: 8px;
+        @include flex(center, left);
+      }
+      &__fullname {
+        font-weight: 600;
+      }
+      &__date {
+        font-size: 12px;
+        cursor: pointer;
+        @include mobile {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+
+  &__create {
+    &__container {
+      @include theme-aware('background-color', 'color-header');
+      @include flex(center, space-between);
+      padding: 18px 16px 18px 16px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      margin-top: 8px;
+    }
+    &__avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 18px;
+      border: 1px solid gray;
+    }
+    &__content {
+      border-radius: 20px;
+      padding: 12px;
+      @include theme-aware('background-color', 'color-background');
+      width: 100%;
+      cursor: pointer;
+    }
+    &__content:hover {
+      @include theme-aware('background-color', 'bg-hover-icon');
+    }
+  }
+}
+
+.newitem {
+  &__container {
+    @include flex(center, space-between);
+    padding: 8px;
+    @include theme-aware('border-bottom', 'color-border');
+    &__post {
+      @include flex(center, left);
+      margin-top: 7px;
+      margin-bottom: 7px;
+    }
+  }
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 6px;
+    border-radius: 4px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  &__title {
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    cursor: pointer;
+  }
+  &__title:hover {
+    color: $main-orange-dark;
+  }
+  &__author {
+    font-size: 12px;
+    margin-top: 4px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
+  &__views {
+    margin-left: 4px;
+    &__title {
+      font-size: 12px;
+    }
+    &__content {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}
+
+.comment {
+  &__input__container {
+    @include flex(center, left);
+    margin-top: 8px;
+  }
+  &__container {
+    margin-top: 8px;
+  }
+  &__item {
+    &__left {
+      width: 100%;
+      padding: 6px 8px 6px 8px;
+      @include flex(center, left);
+    }
+    &__container {
+      position: relative;
+      @include theme-aware('background-color', 'color-background');
+      @include flex(center, space-between);
+      margin-top: 8px;
+      border-radius: 16px;
+    }
+    &__edit {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      padding: 8px;
+      z-index: 1;
+      cursor: pointer;
+    }
+    &__empty {
+      margin-top: 8px;
+    }
+    &__input {
+      border-radius: 16px;
+    }
+    &__fullname {
+      font-weight: 600;
+      margin-right: 4px;
+    }
+  }
+}
+.children__comment__item__container {
+  margin-left: 40px;
+}

@@ -1,6 +1,6 @@
 type Props = {
   author: string
-  date: string
+  date: string | Date
   views: number
 }
 

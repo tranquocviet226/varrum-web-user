@@ -1,8 +1,9 @@
 import MuiAlert, { AlertProps } from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actionSetNotification } from '../../redux/actions/notification/notificationAction'
+import { AppState } from '../../redux/reducers/rootReducer'
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -11,28 +12,27 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />
 })
 
-interface Props {
-  open: boolean
-  message?: string
-}
-
-const Notification = ({ open, message }: Props) => {
+const Notification = () => {
   const dispatch = useDispatch()
-
+  const notifications = useSelector((state: AppState) => state.notifications)
   const handleClose = () => {
-    dispatch(actionSetNotification(false, ''))
+    dispatch(actionSetNotification(false))
   }
 
   return (
     <Snackbar
-      open={open}
+      open={notifications.open}
       autoHideDuration={3000}
       onClose={handleClose}
-      message={message}
+      message={notifications.message}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
     >
-      <Alert onClose={handleClose} severity='error' sx={{ width: '100%' }}>
-        {message}
+      <Alert
+        onClose={handleClose}
+        severity={notifications.notiType || 'error'}
+        sx={{ width: '100%' }}
+      >
+        {notifications.message}
       </Alert>
     </Snackbar>
   )

@@ -45,26 +45,73 @@
   &__logo {
     @include flex(center, space-between);
     left: 8px;
-    width: 170px;
-    img {
-      height: 35px;
+    font-size: 30px;
+    color: $main-orange-dark;
+  }
+  &__logo__hover:hover {
+    opacity: 0.85;
+  }
+
+  &__name {
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 4px;
+    background: $txt-gradient;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @include tablet {
+      display: none;
+    }
+    @include mobile {
+      display: none;
     }
   }
 
   &__right {
     font-size: 20px;
+    margin-right: 8px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    @include mobile {
+      margin-right: 4px;
+    }
+    &__avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      max-width: 50px;
+      object-fit: cover;
+      @include tablet {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+      }
+      @include mobile {
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+      }
+    }
     &__item {
-      height: 100%;
+      cursor: pointer;
+      margin-right: 4px;
       padding-left: 20px;
       padding-right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      @include theme-aware('background-color', 'color-bg-icon-right');
       @include flex(center, center);
 
       @include tablet {
+        width: 44px;
+        height: 44px;
       }
       @include mobile {
+        width: 32px;
+        height: 32px;
+        border-radius: 16px;
         padding-left: 16px;
         padding-right: 16px;
       }
@@ -78,6 +125,7 @@
     @include flex(center, center);
     height: 100%;
     font-size: 24px;
+    margin-left: -100px;
 
     @include tablet {
       font-size: 13px;
@@ -94,6 +142,7 @@
       padding-right: 16px;
       margin-right: 8px;
       margin-left: 8px;
+      position: relative;
       @include flex(center, center);
       &__link {
         height: 80%;
@@ -102,6 +151,8 @@
         align-items: center;
         @include tablet {
           height: auto;
+          font-size: 16px;
+          margin-bottom: 8px;
         }
         @include mobile {
           height: auto;
@@ -111,22 +162,22 @@
         display: none;
         margin-left: 8px;
         @include tablet {
-          width: 40px;
+          width: 80px;
+          padding-top: 6px;
+          padding-bottom: 6px;
           display: inline;
           font-size: 13px;
         }
 
         @include mobile {
-          width: 40px;
+          width: 60px;
           display: inline;
           font-size: 13px;
         }
       }
-    }
-    &__item ~ &__item {
-      @include tablet {
-      }
-      @include mobile {
+      .item__hover {
+        font-size: 13px;
+        display: none;
       }
     }
 
@@ -142,6 +193,26 @@
 
     &__item:hover {
       @include theme-aware('background-color', 'color-bg-hover');
+    }
+    &__item:hover .item__hover {
+      position: absolute;
+      bottom: -40px;
+      width: 80px;
+      text-align: center;
+      padding-top: 8px;
+      font-weight: 600;
+      padding-bottom: 8px;
+      @include theme-aware('color', 'color-background');
+      border-radius: 6px;
+      @include theme-aware('background-color', 'color-txt');
+      display: block;
+      opacity: 0.9;
+      @include tablet {
+        display: none;
+      }
+      @include mobile {
+        display: none;
+      }
     }
 
     &__left {
@@ -195,13 +266,13 @@
       @include tablet {
         display: inline;
         position: absolute;
-        font-size: 16px;
+        font-size: 20px;
         left: 60px;
       }
       @include mobile {
         display: block;
         position: absolute;
-        font-size: 16px;
+        font-size: 20px;
         left: 52px;
       }
     }

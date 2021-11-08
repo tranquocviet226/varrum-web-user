@@ -5,7 +5,11 @@ import { IPost } from '../../../common/interfaces/post/IPost'
 import { getPhotoUrl } from '../../../common/untils/functons'
 import CategoryCard from '../../../components/categoryCard/CategoryCard'
 import Title from '../../../components/title/Title'
-import { actionShowPost } from '../../../redux/actions/post/postAction'
+import { EPostActions } from '../../../redux/actions/post/EPostActions'
+import {
+  actionFetchPosts,
+  actionShowPost
+} from '../../../redux/actions/post/postAction'
 import { AppState } from '../../../redux/reducers/rootReducer'
 import NewPost from '../home/components/new/NewPost'
 
@@ -18,14 +22,40 @@ interface Props {
 const PostPage = (props: Props) => {
   const dispatch = useDispatch()
   const id = props.match.params?.id
-  const newPosts = useSelector((state: AppState) => state.posts.newPosts)
+
+  const postState = useSelector((state: AppState) => state.posts)
+  const relatedPosts = postState.relatedPosts.content
 
   const [post, setPost] = useState<IPost | null>(null)
 
   useEffect(() => {
+    const getRelatedPosts = () => {
+      let condition = ''
+      post?.categories?.forEach((item, index) => {
+        if (index <= 0) {
+          condition = `categories.id = "${item.id}"`
+        } else {
+          condition = condition.concat(` OR categories.id = "${item.id}"`)
+        }
+      })
+
+      const params = {
+        page: 1,
+        limit: 10,
+        condition: condition,
+        orderBy: 'posts.createdAt',
+        orderDirection: 'DESC'
+      }
+      dispatch(actionFetchPosts(EPostActions.FETCH_RELATED_POSTS, params))
+    }
+
+    getRelatedPosts()
+  }, [post, dispatch])
+
+  useEffect(() => {
     const showPost = async () => {
       const response = await actionShowPost(id)
-      if (response) setPost(response)
+      if (!response.errorType) setPost(response)
     }
     showPost()
   }, [dispatch, id])
@@ -81,8 +111,11 @@ const PostPage = (props: Props) => {
             {renderContent()}
           </div>
           <div className='homepage__section'>
-            {newPosts.length > 6 ? (
-              <NewPost title='Mới nhất' posts={newPosts.slice(1, 6)} />
+            {relatedPosts?.length > 0 ? (
+              <>
+                <NewPost title='Mới nhất' posts={relatedPosts.slice(0, 5)} />
+                <NewPost title='Mới nhất' posts={relatedPosts.slice(5, 10)} />
+              </>
             ) : null}
           </div>
         </div>

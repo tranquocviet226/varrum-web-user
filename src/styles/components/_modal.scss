@@ -1,0 +1,35 @@
+.modal {
+  position: fixed;
+  width: 100%;
+  height: calc(100% - 70px);
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include tablet {
+    height: calc(100% - 60px);
+  }
+  @include mobile {
+    height: calc(100% - 40px);
+  }
+  &__confirm {
+    width: 40%;
+    padding: 16px;
+    border-radius: 8px;
+    @include theme-aware('background-color', 'color-background');
+    @include theme-aware('box-shadow', 'color-shadow');
+    &__description {
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+    &__btn {
+      @include flex(center, right);
+      &__cancel {
+        background-image: none;
+        @include theme-aware('color', 'color-txt');
+        @include theme-aware('background-color', 'color-background');
+      }
+    }
+  }
+}

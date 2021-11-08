@@ -1,11 +1,15 @@
-const Ads1 = () => {
+import { CSSProperties } from 'react'
+import { getPhotoUrl } from '../../../../../common/untils/functons'
+
+interface Props extends React.HTMLAttributes<HTMLButtonElement> {
+  urlName: string
+  style?: CSSProperties
+}
+
+const Ads1 = ({ urlName, style }: Props) => {
   return (
-    <div className='ads1__container'>
-      <img
-        className='ads1__image'
-        alt=''
-        src='https://allimages.sgp1.digitaloceanspaces.com/wikilaptopcom/2021/01/1609865189_263_Chia-se-100-hinh-nen-game-Full-HD-dep-sieu.jpg'
-      />
+    <div className='ads1__container' style={style}>
+      <img className='ads1__image' alt='' src={getPhotoUrl(urlName)} />
     </div>
   )
 }

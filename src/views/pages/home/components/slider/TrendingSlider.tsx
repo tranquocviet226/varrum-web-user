@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { IPost } from '../../../../../common/interfaces/post/IPost'
 import { getPhotoUrl } from '../../../../../common/untils/functons'
+import { linkToPosts } from '../../../../../common/untils/general'
 import AuthorDateViews from '../../../../../components/authoDateViews/AuthorDateViews'
 import Carousel from '../../../../../components/carousel/Carousel'
 
@@ -17,7 +18,7 @@ const TrendingSlider = ({ posts }: Props) => {
             <div key={item.id} className='trending'>
               <div className='trending__slider__container'>
                 <div className='animation__image__container'>
-                  <Link to={item.id}>
+                  <Link to={linkToPosts(item.id)}>
                     <img
                       src={getPhotoUrl(item.photo.name)}
                       alt='placeholder'
@@ -27,7 +28,7 @@ const TrendingSlider = ({ posts }: Props) => {
                   </Link>
                 </div>
                 <div className='trending__slider__title__container'>
-                  <Link to={item.id}>
+                  <Link to={linkToPosts(item.id)}>
                     <p className='trending__slider__title'>{item.title}</p>
                   </Link>
                   <AuthorDateViews

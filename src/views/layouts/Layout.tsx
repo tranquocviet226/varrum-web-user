@@ -1,52 +1,74 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Router } from 'react-router-dom'
+import { getToken } from '../../common/untils/functons'
+import { setToken } from '../../common/untils/helpers'
 import Footer from '../../components/footer/Footer'
 import Header from '../../components/header/Header'
 import Notification from '../../components/notification/Notification'
-import instance from '../../network/intercepter'
+import {
+  actionGetListCategory,
+  getForumsCategories
+} from '../../redux/actions/category/categoryAction'
+import { EForumActions } from '../../redux/actions/forums/EForumActions'
+import { actionFetchForums } from '../../redux/actions/forums/forumAction'
 import { EPostActions } from '../../redux/actions/post/EPostActions'
 import { actionFetchPosts } from '../../redux/actions/post/postAction'
-import { AppState } from '../../redux/reducers/rootReducer'
+import history from '../routes/history'
 import Routes from '../routes/Routes'
 import ScrollToTop from '../routes/ScrollToTop'
 
 const Layout = () => {
   const dispatch = useDispatch()
-  const notifications = useSelector((state: AppState) => state.notifications)
+  const token = getToken()
+
+  useEffect(() => {
+    const getListCategory = async () => {
+      dispatch(actionGetListCategory())
+    }
+    getListCategory()
+  }, [dispatch])
+
+  useEffect(() => {
+    const getListCategory = async () => {
+      dispatch(getForumsCategories())
+    }
+    getListCategory()
+  }, [dispatch])
 
   useEffect(() => {
     const params = {
       page: 1,
       limit: 15,
-      orderBy: 'posts.createdAt',
-      orderDirection: 'DESC'
+      random: true
     }
-    dispatch(actionFetchPosts(EPostActions.FETCH_NEW_POSTS, params))
+    dispatch(actionFetchPosts(EPostActions.FETCH_RANDOM_POSTS, params))
   }, [dispatch])
 
-  instance.defaults.headers.common[
-    'Authorization'
-  ] = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZjMmU5OWU5LTkyMDEtNDg1Ny04Yzc5LWE4ZjE5NmExM2VjNCIsImVtYWlsIjoidHJhbnF1b2N2aWV0MjI2QGdtYWlsLmNvbSIsImlhdCI6MTYzMzI4MDUyMSwiZXhwIjoxNjMzMzY2OTIxfQ.NU3f1f_ak1G-gPt-m-W7DG4OoYgT9zC9wWqSTfk0eF8`
+  useEffect(() => {
+    const params = {
+      page: 1,
+      limit: 10,
+      orderBy: 'forums.createdAt',
+      orderDirection: 'DESC'
+    }
+    dispatch(actionFetchForums(EForumActions.FETCH_NEW_FORUMS, params))
+  }, [dispatch])
+
+  setToken(token)
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <ScrollToTop />
-      <Notification open={notifications.open} message={notifications.message} />
-      <Route
-        render={(props) => (
-          <div>
-            <Header {...props} />
-            <div className='container'>
-              <div className='main'>
-                <Routes />
-              </div>
-            </div>
-            <Footer />
-          </div>
-        )}
-      />
-    </BrowserRouter>
+      <Notification />
+      <Header />
+      <div className='container'>
+        <div className='main'>
+          <Routes />
+        </div>
+      </div>
+      <Footer />
+    </Router>
   )
 }
 

@@ -1,3 +1,4 @@
+import { bannerImgName } from '../../../../../common/constants/constants'
 import { IPost } from '../../../../../common/interfaces/post/IPost'
 import NewsCard from '../../../../../components/newsCard/NewsCard'
 import Title from '../../../../../components/title/Title'
@@ -17,7 +18,7 @@ const NewPost = ({ title, posts }: Props) => {
       {posts.map((post) => (
         <NewsCard post={post} key={post.id} />
       ))}
-      <Ads1 />
+      <Ads1 urlName={bannerImgName[2]} />
     </>
   )
 }

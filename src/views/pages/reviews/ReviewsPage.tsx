@@ -58,7 +58,7 @@ const ReviewsPage = () => {
     <div>
       <div className='newspage__container'>
         <div className='newspage__body'>
-          <Title title={ECategory.GAMES} />
+          <Title title={ECategory.REVIEWS} />
           {reviewsPosts?.length > 0 ? (
             <div className='newspage__content'>
               {reviewsPosts.map((post: IPost) => (

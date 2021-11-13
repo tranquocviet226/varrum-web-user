@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { defaultAvatar } from '../../../../common/constants/constants'
 import { IComment } from '../../../../common/interfaces/forums/IComment'
 import { IPost } from '../../../../common/interfaces/post/IPost'
 import { getPhotoUrl } from '../../../../common/untils/functons'
 import {
-  defaultAvatar,
   linkToForum,
   routes
 } from '../../../../common/untils/general'

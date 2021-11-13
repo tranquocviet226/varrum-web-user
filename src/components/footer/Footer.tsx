@@ -13,7 +13,7 @@ const Footer = () => {
       <div className='container'>
         <Grid col={4} mdCol={2} smCol={1} gap={10}>
           <div>
-            <div className='footer__title'>REVIEWS</div>
+            <div className='footer__title'>GÁI XINH</div>
             <div className='footer__content'>
               {posts.slice(0, 5).map((item: IPost, index) => (
                 <p key={index} className='footer__item__title'>

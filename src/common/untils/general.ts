@@ -1,6 +1,3 @@
-export const defaultAvatar = '65411869-d46b-4997-8f5d-e5d0af30b2ca.png'
-export const defaultPost = '61f0dab6-a9d7-47d4-9397-0f4afd1342cb.jpg'
-
 export const fbAvatarUrl = (id: string) => {
   return `https://graph.facebook.com/${id}/picture`
 }
@@ -14,8 +11,8 @@ export const routes = {
   newsDetail: '/news/:id',
   games: '/games',
   gamesDetail: '/games/:id',
-  reviews: '/reviews',
-  reviewsDetail: '/reviews/:id',
+  reviews: '/gaixinh',
+  reviewsDetail: '/gaixinh/:id',
   trendings: '/trendings',
   trendingsDetail: '/trendings/:id',
   highlights: '/highlights',
@@ -48,7 +45,7 @@ export const mainNav = [
     path: routes.games
   },
   {
-    display: 'Reviews',
+    display: 'Gái xinh',
     class: 'bx bxs-videos',
     path: routes.reviews
   },

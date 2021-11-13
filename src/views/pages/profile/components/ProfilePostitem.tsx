@@ -1,9 +1,9 @@
 import LazyLoad from 'react-lazyload'
 import { useHistory } from 'react-router-dom'
+import { defaultPost } from '../../../../common/constants/constants'
 import { IPost } from '../../../../common/interfaces/post/IPost'
 import { getPhotoUrl } from '../../../../common/untils/functons'
 import {
-  defaultPost,
   linkToPosts,
   routes
 } from '../../../../common/untils/general'

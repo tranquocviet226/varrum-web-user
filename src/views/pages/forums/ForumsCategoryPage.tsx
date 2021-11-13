@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
-import { bannerImgName } from '../../../common/constants/constants'
 import { routes } from '../../../common/untils/general'
 import { convertToSlug } from '../../../common/untils/helpers'
 import Title from '../../../components/title/Title'
 import { EForumActions } from '../../../redux/actions/forums/EForumActions'
 import { actionFetchForums } from '../../../redux/actions/forums/forumAction'
 import { AppState } from '../../../redux/reducers/rootReducer'
-import Ads1 from '../home/components/ads/Ads1'
 import NewItem from '../home/components/forum/components/NewItem'
 import ForumsItem from './components/ForumsItem'
-import InfiniteScroll from 'react-infinite-scroll-component'
 
 const ForumsCategoryPage = () => {
   const location = useLocation()
@@ -97,7 +95,7 @@ const ForumsCategoryPage = () => {
               newForums.content.map((item) => (
                 <NewItem key={item.id} item={item} />
               ))}
-            <Ads1 urlName={bannerImgName[2]} style={{ height: 180 }} />
+            {/* <Ads1 urlName={bannerImgName[2]} style={{ height: 180 }} /> */}
           </div>
         </div>
       </div>

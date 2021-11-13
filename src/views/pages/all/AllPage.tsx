@@ -76,7 +76,7 @@ const AllPage = () => {
               {randomPosts.slice(5, 9).map((post) => (
                 <NewsCard post={post} key={post.id} />
               ))}
-              <Ads1 urlName={bannerImgName[2]} />
+              {/* <Ads1 urlName={bannerImgName[2]} /> */}
             </>
           ) : null}
         </div>

@@ -1,6 +1,6 @@
 import moment from 'moment'
+import { AvatarDefault } from '../../assets/images'
 import instance from '../../network/intercepter'
-import { defaultAvatar } from '../constants/constants'
 import { IUser } from '../interfaces/user/IUser'
 import { getPhotoUrl } from './functons'
 
@@ -10,8 +10,8 @@ const getAvatar = (users: any) => {
   const result = avaName
     ? getPhotoUrl(avaName)
     : fbAva
-    ? fbAva
-    : getPhotoUrl(defaultAvatar)
+      ? fbAva
+      : AvatarDefault
   return result
 }
 
@@ -21,8 +21,8 @@ const getUserAvatar = (user: IUser) => {
   const result = avaName
     ? getPhotoUrl(avaName)
     : fbAva
-    ? fbAva
-    : getPhotoUrl(defaultAvatar)
+      ? fbAva
+      : AvatarDefault
   return result
 }
 
@@ -63,3 +63,4 @@ export {
   getUserAvatar,
   convertDate
 }
+

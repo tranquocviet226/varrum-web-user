@@ -2,14 +2,12 @@ import moment from 'moment'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { bannerImgName } from '../../../common/constants/constants'
 import { routes } from '../../../common/untils/general'
 import VButton from '../../../components/button/VButton'
 import Title from '../../../components/title/Title'
 import { EPostActions } from '../../../redux/actions/post/EPostActions'
 import { actionFetchPosts } from '../../../redux/actions/post/postAction'
 import { AppState } from '../../../redux/reducers/rootReducer'
-import Ads1 from './components/ads/Ads1'
 import AllPost from './components/allPost/AllPost'
 import Banner from './components/banner/Banner'
 import NewItem from './components/forum/components/NewItem'
@@ -58,7 +56,7 @@ const HomePage = () => {
       <div className='homepage__container mb-2'>
         <div className='homepage__body'>
           <Forum />
-          <Ads1 urlName={bannerImgName[0]} style={{ height: 180 }} />
+          {/* <Ads1 urlName={bannerImgName[0]} style={{ height: 180 }} /> */}
         </div>
         <div className='homepage__section'>
           <Title title='Bài viết mới' />
@@ -67,7 +65,7 @@ const HomePage = () => {
               newForums.content.map((item) => (
                 <NewItem key={item.id} item={item} />
               ))}
-            <Ads1 urlName={bannerImgName[2]} style={{ height: 180 }} />
+            {/* <Ads1 urlName={bannerImgName[2]} style={{ height: 180 }} /> */}
           </div>
         </div>
       </div>
@@ -80,7 +78,7 @@ const HomePage = () => {
         <div className='homepage__body'>
           {newPosts.length > 0 ? <Banner post={newPosts[0]} /> : null}
           {trendingPosts.length > 0 ? <Trending posts={trendingPosts} /> : null}
-          <Ads1 urlName={bannerImgName[0]} style={{ height: 170 }} />
+          {/* <Ads1 urlName={bannerImgName[0]} style={{ height: 170 }} /> */}
         </div>
         <div className='homepage__section'>
           {newPosts.length > 6 ? (
@@ -118,7 +116,7 @@ const HomePage = () => {
           ) : null}
         </div>
       </div>
-      <Ads1 urlName={bannerImgName[1]} style={{ height: 180 }} />
+      {/* <Ads1 urlName={bannerImgName[1]} style={{ height: 180 }} /> */}
       {renderForums()}
     </div>
   )

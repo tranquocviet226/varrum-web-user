@@ -1,11 +1,10 @@
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { bannerImgName, defaultAvatar } from '../../../common/constants/constants'
+import { defaultAvatar } from '../../../common/constants/constants'
 import { getPhotoUrl } from '../../../common/untils/functons'
 import { routes } from '../../../common/untils/general'
 import Title from '../../../components/title/Title'
 import { AppState } from '../../../redux/reducers/rootReducer'
-import Ads1 from '../home/components/ads/Ads1'
 import NewItem from '../home/components/forum/components/NewItem'
 import Forum from '../home/components/forum/Forum'
 
@@ -38,7 +37,7 @@ const ForumsPage = () => {
             </div>
           </div>
           <Forum />
-          <Ads1 urlName={bannerImgName[0]} style={{ height: 180 }} />
+          {/* <Ads1 urlName={bannerImgName[0]} style={{ height: 180 }} /> */}
         </div>
         <div className='homepage__section'>
           <Title title='Bài viết mới' />
@@ -47,7 +46,7 @@ const ForumsPage = () => {
               newForums.content.map((item) => (
                 <NewItem key={item.id} item={item} />
               ))}
-            <Ads1 urlName={bannerImgName[2]} style={{ height: 180 }} />
+            {/* <Ads1 urlName={bannerImgName[2]} style={{ height: 180 }} /> */}
           </div>
         </div>
       </div>

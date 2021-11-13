@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { bannerImgName } from '../../../common/constants/constants'
 import { IPost } from '../../../common/interfaces/post/IPost'
 import Title from '../../../components/title/Title'
 import { actionShowForum } from '../../../redux/actions/forums/forumAction'
 import { AppState } from '../../../redux/reducers/rootReducer'
-import Ads1 from '../home/components/ads/Ads1'
 import NewItem from '../home/components/forum/components/NewItem'
 import ForumsItemDetail from './components/ForumItemDetail'
 
@@ -40,7 +38,7 @@ const ForumDetail = () => {
                 newForums.content.map((item) => (
                   <NewItem key={item.id} item={item} />
                 ))}
-              <Ads1 urlName={bannerImgName[2]} style={{ height: 180 }} />
+              {/* <Ads1 urlName={bannerImgName[2]} style={{ height: 180 }} /> */}
             </div>
           </div>
         </div>

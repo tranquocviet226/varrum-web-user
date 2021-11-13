@@ -1,4 +1,7 @@
-export const URL = 'http://116.105.165.30:3000/api/v1'
+export const URL = 'http://116.110.253.124:3000/api/v1'
+
+export const defaultAvatar = '65411869-d46b-4997-8f5d-e5d0af30b2ca.jpg'
+export const defaultPost = '61f0dab6-a9d7-47d4-9397-0f4afd1342cb.jpg'
 
 export const bannerImgName = [
   '69a47629-8ab5-455b-945d-3bb5efdab5ee.jpg',

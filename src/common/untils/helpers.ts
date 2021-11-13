@@ -1,8 +1,8 @@
 import moment from 'moment'
 import instance from '../../network/intercepter'
+import { defaultAvatar } from '../constants/constants'
 import { IUser } from '../interfaces/user/IUser'
 import { getPhotoUrl } from './functons'
-import { defaultAvatar } from './general'
 
 const getAvatar = (users: any) => {
   const avaName = users?.auth?.user?.avatar?.name

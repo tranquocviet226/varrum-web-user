@@ -43,7 +43,7 @@ const ForumCard = ({ category }: CategoryProps) => {
           <div>
             <p className='forum__card__right__title'>Lượt thích</p>
             <p className='forum__card__right__txt'>
-              {category.forum.likes * 13}
+              {(category?.forum?.likes || 0) * 13}
             </p>
           </div>
           <div>

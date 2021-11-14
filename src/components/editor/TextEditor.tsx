@@ -61,7 +61,7 @@ const modules = {
 const TextEditor = ({ content, handleSubmit, handleChangeContent }: Props) => {
   const handleSubmitEditor = () => {
     if (quillObj) {
-      const value = quillObj?.value
+      const value = quillObj?.props?.value
       handleSubmit(value)
     }
   }

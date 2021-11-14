@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react'
-import ReactQuill from 'react-quill'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { defaultAvatar } from '../../../../common/constants/constants'
 import { IComment } from '../../../../common/interfaces/forums/IComment'
 import { IPost } from '../../../../common/interfaces/post/IPost'
-import { getPhotoUrl } from '../../../../common/untils/functons'
 import {
   linkToForum,
   routes
 } from '../../../../common/untils/general'
-import { vnDate } from '../../../../common/untils/helpers'
+import { getUserAvatar, vnDate } from '../../../../common/untils/helpers'
 import VAvatar from '../../../../components/avatar/Avatar'
 import VInput from '../../../../components/input/VInput'
 import {
@@ -29,7 +26,7 @@ const ForumsItemDetail = ({ item }: Props) => {
 
   const auth = useSelector((state: AppState) => state.users?.auth)
   const id = item?.id
-  const avatar = item?.author?.avatar?.name || defaultAvatar
+  const author = item?.author
   const fullname = item?.author?.fullname || ''
   const createdAt = vnDate(item.createdAt) || ''
   const [likes, setLikes] = useState<number>()
@@ -72,9 +69,9 @@ const ForumsItemDetail = ({ item }: Props) => {
       const children = comments.filter((item) => item.parentId.id)
       parent.map(
         (item) =>
-          (item['childrenComment'] = children.filter(
-            (child) => item.id === child.parentId.id
-          ))
+        (item['childrenComment'] = children.filter(
+          (child) => item.id === child.parentId.id
+        ))
       )
       setComments(parent)
       if (show) setShowComment(!showComment)
@@ -110,7 +107,7 @@ const ForumsItemDetail = ({ item }: Props) => {
     <div className='forum__category__container'>
       <div className='forum__category__avatar__container'>
         <img
-          src={getPhotoUrl(avatar)}
+          src={getUserAvatar(author)}
           className='forum__category__avatar'
           alt=''
         />
@@ -128,7 +125,7 @@ const ForumsItemDetail = ({ item }: Props) => {
         {item.title}
       </div>
       <div className='forum__category__content'>
-        <ReactQuill value={item.content} readOnly={true} theme={'bubble'} />
+        <div dangerouslySetInnerHTML={{ __html: item.content }} />
       </div>
       <div className='line'></div>
       <div className='forum__category__comment'>
@@ -138,9 +135,8 @@ const ForumsItemDetail = ({ item }: Props) => {
           style={{ color: userLike ? '#e61414' : undefined }}
         >
           <i
-            className={`bx ${
-              userLike ? 'bxs-like' : 'bx-like'
-            } forum__category__comment__ic`}
+            className={`bx ${userLike ? 'bxs-like' : 'bx-like'
+              } forum__category__comment__ic`}
           ></i>
           {likes} Thích
         </div>
@@ -161,10 +157,10 @@ const ForumsItemDetail = ({ item }: Props) => {
         <>
           {comments.length > 0
             ? comments.map((item) => (
-                <div className='comment__container' key={item.id}>
-                  <Comment comment={item} key={item.id} />{' '}
-                </div>
-              ))
+              <div className='comment__container' key={item.id}>
+                <Comment comment={item} key={item.id} />{' '}
+              </div>
+            ))
             : null}
           <div className='comment__input__container'>
             <VAvatar style={styles.avatar} />

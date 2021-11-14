@@ -1,8 +1,7 @@
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { defaultAvatar } from '../../../common/constants/constants'
-import { getPhotoUrl } from '../../../common/untils/functons'
 import { routes } from '../../../common/untils/general'
+import { getAvatar } from '../../../common/untils/helpers'
 import Title from '../../../components/title/Title'
 import { AppState } from '../../../redux/reducers/rootReducer'
 import NewItem from '../home/components/forum/components/NewItem'
@@ -11,6 +10,7 @@ import Forum from '../home/components/forum/Forum'
 const ForumsPage = () => {
   const history = useHistory()
   const state = useSelector((state: AppState) => state)
+  const users = state.users
   const newForums = state.forums.newForums
 
   const handleCreateForums = () => {
@@ -24,7 +24,7 @@ const ForumsPage = () => {
           <Title title='Viết bài' />
           <div className='forum__create__container'>
             <img
-              src={getPhotoUrl(defaultAvatar)}
+              src={getAvatar(users)}
               className='forum__create__avatar'
               alt=''
             />

@@ -1,14 +1,17 @@
 .loading__body {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
   background: rgba($color: black, $alpha: 0.5);
-  position: absolute;
+  position: fixed;
+  margin-top: -70px;
   z-index: 100;
 }
-
+.isloading {
+  display: flex;
+}
 .loader {
   position: relative;
   width: 50px;

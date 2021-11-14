@@ -1,5 +1,5 @@
 import moment from 'moment'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { routes } from '../../../common/untils/general'

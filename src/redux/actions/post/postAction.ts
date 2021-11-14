@@ -20,9 +20,15 @@ export const actionFetchPosts = (
   params?: IParamsPaginate
 ) => {
   return async (dispatch: Dispatch) => {
-    const response = await PostApi.getListPost(params)
-    const data = configResponse(response)
-    if (!data.errorType) return dispatch(fetchPosts(type, data))
+    try {
+      const response = await PostApi.getListPost(params)
+      const data = configResponse(response)
+      if (!data.errorType) return dispatch(fetchPosts(type, data))
+    } catch (error) {
+    } finally {
+      // dispatch(setLoading(false))
+    }
+
   }
 }
 

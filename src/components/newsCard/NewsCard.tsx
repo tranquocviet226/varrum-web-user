@@ -15,7 +15,7 @@ const NewsCard = ({ post }: Props) => {
   const route = pathname.pathname.split('/')[1]
   const linkToRoute = `/${route ? route : 'posts'}/${post.id}`
   return (
-    <LazyLoad height={'100%'} offset={[-100, 0]}>
+    <LazyLoad>
       <div className='news__card__container'>
         <div className='news__card__image__container'>
           <Link to={linkToRoute}>

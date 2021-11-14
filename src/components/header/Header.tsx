@@ -92,7 +92,7 @@ const Header = () => {
 
   const themeDefault = getTheme()
   const [themeMode, setThemeMode] = useState(
-    themeDefault ? themeDefault : themes.dark
+    themeDefault ? themeDefault : themes.light
   )
 
   const handleChangeTheme = () => {

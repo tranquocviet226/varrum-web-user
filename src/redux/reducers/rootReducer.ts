@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import categoryReducer from './category/categoryReducer'
+import commonReducer from './common/commonReducer'
 import forumsReducer from './forums/forumsReducer'
 import notificationReducer from './notification/notificationReducer'
 import paginateReducer from './paginate/paginateReducer'
@@ -8,6 +9,7 @@ import searchReducer from './search/searchReducer'
 import userReducer from './user/userReducer'
 
 const allReducers = combineReducers({
+  common: commonReducer,
   users: userReducer,
   posts: postReducer,
   notifications: notificationReducer,

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import ReactQuill from 'react-quill'
 import { useDispatch, useSelector } from 'react-redux'
 import { IPost } from '../../../common/interfaces/post/IPost'
 import { getPhotoUrl } from '../../../common/untils/functons'
 import CategoryCard from '../../../components/categoryCard/CategoryCard'
 import Title from '../../../components/title/Title'
+import { setLoading } from '../../../redux/actions/common/commonActions'
 import { EPostActions } from '../../../redux/actions/post/EPostActions'
 import {
   actionFetchPosts,
@@ -23,6 +23,7 @@ const PostPage = (props: Props) => {
   const dispatch = useDispatch()
   const id = props.match.params?.id
 
+  const loading = useSelector((state: AppState) => state.common.loading)
   const postState = useSelector((state: AppState) => state.posts)
   const relatedPosts = postState.relatedPosts.content
 
@@ -54,8 +55,14 @@ const PostPage = (props: Props) => {
 
   useEffect(() => {
     const showPost = async () => {
-      const response = await actionShowPost(id)
-      if (!response.errorType) setPost(response)
+      try {
+        dispatch(setLoading(true))
+        const response = await actionShowPost(id)
+        if (!response.errorType) setPost(response)
+      } finally {
+        dispatch(setLoading(false))
+      }
+
     }
     showPost()
   }, [dispatch, id])
@@ -87,42 +94,40 @@ const PostPage = (props: Props) => {
           className='postpage__image'
           alt=''
         />
-        <div className='mt-2'>
-          <ReactQuill value={post.content} readOnly={true} theme={'bubble'} />
+        <div className='mt-2 ql-container-custom'>
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
       </div>
     )
   }
 
-  if (post)
-    return (
-      <div>
-        <div className='homepage__container'>
-          <div className='homepage__body'>
-            <div className='categories__container'>
-              {post.categories.map((item) => (
-                <CategoryCard item={item} key={item.id} />
-              ))}
-            </div>
-            <div className='mt-1'>
-              <Title title={post.title} className='postpage__title' />
-            </div>
-            {renderPostAuthor()}
-            {renderContent()}
+  if (loading) return <div />
+  return (
+    <div>
+      <div className='homepage__container'>
+        {post && <div className='homepage__body'>
+          <div className='categories__container'>
+            {post.categories.map((item) => (
+              <CategoryCard item={item} key={item.id} />
+            ))}
           </div>
-          <div className='homepage__section'>
-            {relatedPosts?.length > 0 ? (
-              <>
-                <NewPost title='Mới nhất' posts={relatedPosts.slice(0, 5)} />
-                <NewPost title='Mới nhất' posts={relatedPosts.slice(5, 10)} />
-              </>
-            ) : null}
+          <div className='mt-1'>
+            <Title title={post.title} className='postpage__title' />
           </div>
+          {renderPostAuthor()}
+          {renderContent()}
+        </div>}
+        <div className='homepage__section'>
+          {relatedPosts?.length > 0 ? (
+            <>
+              <NewPost title='Mới nhất' posts={relatedPosts.slice(0, 5)} />
+              <NewPost title='Mới nhất' posts={relatedPosts.slice(5, 10)} />
+            </>
+          ) : null}
         </div>
       </div>
-    )
-
-  return <div></div>
+    </div>
+  )
 }
 
 export default PostPage

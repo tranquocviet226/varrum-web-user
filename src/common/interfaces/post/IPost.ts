@@ -1,6 +1,6 @@
-import { IAuthor } from '../author/IAuthor'
 import { ICategory } from '../category/ICategory'
 import { IPhoto } from '../photo/IPhoto'
+import { IUser } from '../user/IUser'
 
 export interface IPost {
   id: string
@@ -15,7 +15,7 @@ export interface IPost {
   hash_tag: string
   photo: IPhoto
   categories: ICategory[]
-  author: IAuthor
+  author: IUser
   createdAt: Date
   updatedAt: Date
   errorType: string

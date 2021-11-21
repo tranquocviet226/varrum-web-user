@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+import { LogoVarum } from '../../assets/images'
 import { getTheme } from '../../common/untils/functons'
 import { mainNav, routes } from '../../common/untils/general'
 import { getAvatar } from '../../common/untils/helpers'
@@ -142,8 +143,8 @@ const Header = () => {
             to={routes.home}
             style={{ display: 'flex', alignItems: 'center' }}
           >
-            <i className='bx bx-code-alt header__logo header__logo__hover'></i>
-            <span className='header__name '>Varum</span>
+            <img src={LogoVarum} className='header__logo header__logo__hover' style={{width: 30, height: 30}} alt=''/>
+            <span className='header__name '>arum</span>
           </Link>
           <Search onClickSearch={() => setSearchVisible(true)} />
         </div>

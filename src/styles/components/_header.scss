@@ -181,7 +181,7 @@
     }
 
     &__item.active {
-      font-weight: 600;
+      font-weight: 700;
       @include theme-aware('background-color', 'color-bg-item');
       @include theme-aware('box-shadow', 'color-shadow');
       color: $main-bg-light;
@@ -199,7 +199,7 @@
       width: 80px;
       text-align: center;
       padding-top: 8px;
-      font-weight: 600;
+      font-weight: 700;
       padding-bottom: 8px;
       @include theme-aware('color', 'color-background');
       border-radius: 6px;

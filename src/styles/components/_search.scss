@@ -19,7 +19,7 @@
   }
   &__placeholder {
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     @include theme-aware('color', 'color-txt');
   }
   &__header {
@@ -42,7 +42,7 @@
     }
   }
   &__recent {
-    font-weight: 600;
+    font-weight: 700;
     &__container {
       margin-top: 12px;
     }

@@ -12,7 +12,7 @@ import {
 } from '../../../redux/actions/post/postAction'
 import { AppState } from '../../../redux/reducers/rootReducer'
 import NewPost from '../home/components/new/NewPost'
-
+import { Helmet } from 'react-helmet-async'
 interface Props {
   match: {
     params: { id: string }
@@ -100,12 +100,16 @@ const PostPage = (props: Props) => {
       </div>
     )
   }
-
   if (loading) return <div />
   return (
     <div>
       <div className='homepage__container'>
         {post && <div className='homepage__body'>
+          <Helmet>
+            <title>{post.title}</title>
+            <meta property="og:image"
+              content={getPhotoUrl(post.photo.name)} />
+          </Helmet>
           <div className='categories__container'>
             {post.categories.map((item) => (
               <CategoryCard item={item} key={item.id} />

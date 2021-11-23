@@ -68,7 +68,7 @@
         }
       }
       &__txt {
-        font-weight: 600;
+        font-weight: 700;
         @include mobile {
           font-size: 13px;
         }
@@ -82,7 +82,7 @@
           }
         }
         &__title {
-          font-weight: 600;
+          font-weight: 700;
           @include flex(center, left);
           @include mobile {
             font-size: 13px;
@@ -120,7 +120,7 @@
       }
     }
     &__comment {
-      font-weight: 600;
+      font-weight: 700;
       opacity: 0.9;
       margin-top: 4px;
       margin-bottom: 4px;
@@ -162,7 +162,7 @@
         @include flex(center, left);
       }
       &__fullname {
-        font-weight: 600;
+        font-weight: 700;
       }
       &__date {
         font-size: 12px;
@@ -224,7 +224,7 @@
   }
   &__title {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
@@ -250,7 +250,7 @@
     }
     &__content {
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
     }
   }
 }
@@ -291,7 +291,7 @@
       border-radius: 16px;
     }
     &__fullname {
-      font-weight: 600;
+      font-weight: 700;
       margin-right: 4px;
     }
   }

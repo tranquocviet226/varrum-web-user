@@ -108,6 +108,7 @@ const PostPage = (props: Props) => {
         {post && <div className='homepage__body'>
           <Helmet>
             <title>{post.title}</title>
+            <meta property="fb:app_id" content="403978954624640" /> 
             <meta property="og:url" content={WEB_URL.concat('post/').concat(id)} />
             <meta property="og:type" content="article" />
             <meta property="og:title" content={post.title} />

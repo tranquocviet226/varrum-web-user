@@ -13,6 +13,7 @@ import {
 import { AppState } from '../../../redux/reducers/rootReducer'
 import NewPost from '../home/components/new/NewPost'
 import { Helmet } from 'react-helmet-async'
+import { WEB_URL } from '../../../common/constants/constants'
 interface Props {
   match: {
     params: { id: string }
@@ -107,8 +108,11 @@ const PostPage = (props: Props) => {
         {post && <div className='homepage__body'>
           <Helmet>
             <title>{post.title}</title>
-            <meta property="og:image"
-              content={getPhotoUrl(post.photo.name)} />
+            <meta property="og:url" content={WEB_URL.concat('post/').concat(id)} />
+            <meta property="og:type" content="article" />
+            <meta property="og:title" content={post.title} />
+            <meta property="og:description" content={post.description} />
+            <meta property="og:image" content={getPhotoUrl(post.photo.name)} />
           </Helmet>
           <div className='categories__container'>
             {post.categories.map((item) => (

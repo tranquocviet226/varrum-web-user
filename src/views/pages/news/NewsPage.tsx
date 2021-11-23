@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from 'react-redux'
 import { ECategory } from '../../../common/enums/ECategory'
 import { IPost } from '../../../common/interfaces/post/IPost'
@@ -55,6 +56,9 @@ const NewsPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{ECategory.VARUM + ' | ' + ECategory.NEWS}</title>
+      </Helmet>
       <div className='newspage__container'>
         <div className='newspage__body'>
           <Title title={ECategory.NEWS} />

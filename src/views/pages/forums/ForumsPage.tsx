@@ -1,5 +1,7 @@
+import { Helmet } from 'react-helmet-async'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { ECategory } from '../../../common/enums/ECategory'
 import { routes } from '../../../common/untils/general'
 import { getAvatar } from '../../../common/untils/helpers'
 import Title from '../../../components/title/Title'
@@ -19,6 +21,9 @@ const ForumsPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{ECategory.VARUM + ' | ' + ECategory.FORUMS}</title>
+      </Helmet>
       <div className='homepage__container mb-2'>
         <div className='homepage__body'>
           <Title title='Viết bài' />

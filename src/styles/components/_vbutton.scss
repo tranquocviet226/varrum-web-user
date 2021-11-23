@@ -12,7 +12,7 @@
     border: none;
     @include flex(center, center);
     @include theme-aware('box-shadow', 'color-shadow');
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
   }
   &__container:hover {

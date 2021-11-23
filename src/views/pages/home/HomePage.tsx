@@ -1,7 +1,9 @@
 import moment from 'moment'
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { ECategory } from '../../../common/enums/ECategory'
 import { routes } from '../../../common/untils/general'
 import VButton from '../../../components/button/VButton'
 import Title from '../../../components/title/Title'
@@ -74,6 +76,9 @@ const HomePage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{ECategory.VARUM}</title>
+      </Helmet>
       <div className='homepage__container'>
         <div className='homepage__body'>
           {newPosts.length > 0 ? <Banner post={newPosts[0]} /> : null}

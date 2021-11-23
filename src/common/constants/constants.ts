@@ -1,4 +1,5 @@
 export const URL = 'https://varum.tech/tqv/api/v1'
+export const WEB_URL = 'https://varum.tech/'
 
 export const defaultAvatar = '65411869-d46b-4997-8f5d-e5d0af30b2ca.jpg'
 export const defaultPost = '61f0dab6-a9d7-47d4-9397-0f4afd1342cb.jpg'

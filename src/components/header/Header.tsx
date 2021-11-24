@@ -143,7 +143,12 @@ const Header = () => {
             to={routes.home}
             style={{ display: 'flex', alignItems: 'center' }}
           >
-            <img src={LogoVarum} className='header__logo header__logo__hover' style={{width: 30, height: 30}} alt=''/>
+            <img
+              src={LogoVarum}
+              className='header__logo header__logo__hover'
+              style={{ width: 30, height: 30 }}
+              alt=''
+            />
             <span className='header__name '>arum</span>
           </Link>
           <Search onClickSearch={() => setSearchVisible(true)} />

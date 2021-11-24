@@ -6,10 +6,12 @@ import { HelmetProvider } from 'react-helmet-async'
 
 const App = () => {
   moment.locale('vi')
-  return <HelmetProvider>
-    <Loading />
-    <Layout />
-  </HelmetProvider>
+  return (
+    <HelmetProvider>
+      <Loading />
+      <Layout />
+    </HelmetProvider>
+  )
 }
 
 export default App

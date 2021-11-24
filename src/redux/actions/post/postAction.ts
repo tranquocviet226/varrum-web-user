@@ -28,7 +28,6 @@ export const actionFetchPosts = (
     } finally {
       // dispatch(setLoading(false))
     }
-
   }
 }
 

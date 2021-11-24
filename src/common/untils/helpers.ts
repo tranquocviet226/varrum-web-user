@@ -7,22 +7,14 @@ import { getPhotoUrl } from './functons'
 const getAvatar = (users: any) => {
   const avaName = users?.auth?.user?.avatar?.name
   const fbAva = users?.auth?.user?.fbAvatar
-  const result = avaName
-    ? getPhotoUrl(avaName)
-    : fbAva
-      ? fbAva
-      : AvatarDefault
+  const result = avaName ? getPhotoUrl(avaName) : fbAva ? fbAva : AvatarDefault
   return result
 }
 
 const getUserAvatar = (user: IUser) => {
   const avaName = user?.avatar?.name
   const fbAva = user?.fbAvatar
-  const result = avaName
-    ? getPhotoUrl(avaName)
-    : fbAva
-      ? fbAva
-      : AvatarDefault
+  const result = avaName ? getPhotoUrl(avaName) : fbAva ? fbAva : AvatarDefault
   return result
 }
 
@@ -63,4 +55,3 @@ export {
   getUserAvatar,
   convertDate
 }
-

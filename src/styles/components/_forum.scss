@@ -1,4 +1,19 @@
 .forum {
+  &__load__more {
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px;
+    @include theme-aware('background-color', 'color-bg-icon-right');
+    border-radius: 8px;
+    position: absolute;
+    bottom: 0px;
+    left: 8px;
+  }
+  &__load__more:hover {
+    @include theme-aware('background-color', 'color-bg-hover');
+  }
   &__card {
     &__container {
       @include theme-aware('background-color', 'color-header');
@@ -142,10 +157,12 @@
     }
     &__title {
       font-weight: 700;
-      cursor: pointer;
     }
     &__content {
-      margin: 2px 0px 10px 0px;
+      margin: 0px 0px 4px 0px;
+      padding-bottom: 4px;
+      overflow: hidden;
+      position: relative;
     }
     &__avatar {
       width: 50px;

@@ -1,12 +1,9 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { IComment } from '../../../../common/interfaces/forums/IComment'
 import { IPost } from '../../../../common/interfaces/post/IPost'
-import {
-  linkToForum,
-  routes
-} from '../../../../common/untils/general'
+import { linkToForum, routes } from '../../../../common/untils/general'
 import { getUserAvatar, vnDate } from '../../../../common/untils/helpers'
 import VAvatar from '../../../../components/avatar/Avatar'
 import VInput from '../../../../components/input/VInput'
@@ -16,7 +13,6 @@ import {
 } from '../../../../redux/actions/forums/forumAction'
 import { actionLike } from '../../../../redux/actions/like/likeAction'
 import { AppState } from '../../../../redux/reducers/rootReducer'
-
 interface Props {
   item: IPost
 }
@@ -35,6 +31,8 @@ const ForumsItem = ({ item }: Props) => {
   const [showComment, setShowComment] = useState(false)
   const [comments, setComments] = useState([])
   const [commentValue, setCommentValue] = useState('')
+  const [showMore, setShowMore] = useState(false)
+  const containerRef = useRef<HTMLDivElement>()
 
   const handleLike = () => {
     if (auth) dispatch(actionLike(id))
@@ -58,9 +56,9 @@ const ForumsItem = ({ item }: Props) => {
       const children = comments.filter((item) => item.parentId.id)
       parent.map(
         (item) =>
-        (item['childrenComment'] = children.filter(
-          (child) => item.id === child.parentId.id
-        ))
+          (item['childrenComment'] = children.filter(
+            (child) => item.id === child.parentId.id
+          ))
       )
       setComments(parent)
       if (show) setShowComment(!showComment)
@@ -109,12 +107,23 @@ const ForumsItem = ({ item }: Props) => {
           </div>
         </div>
       </div>
-      <div onClick={handleDetailForum} className='forum__category__title'>
-        {item.title}
+      <div className='forum__category__title'>{item.title}</div>
+      <div
+        style={{ maxHeight: showMore ? undefined : 460 }}
+        className='forum__category__content'
+      >
+        <div
+          ref={containerRef}
+          dangerouslySetInnerHTML={{ __html: item.content }}
+        />
+        {!showMore ? (
+          <div onClick={() => setShowMore(true)} className='forum__load__more'>
+            {' '}
+            Xem thêm{' '}
+          </div>
+        ) : null}
       </div>
-      <div className='forum__category__content'>
-        <div dangerouslySetInnerHTML={{ __html: item.content }} />
-      </div>
+
       <div className='line'></div>
       <div className='forum__category__comment'>
         <div
@@ -123,8 +132,9 @@ const ForumsItem = ({ item }: Props) => {
           style={{ color: item.userLike ? '#e61414' : undefined }}
         >
           <i
-            className={`bx ${item.userLike ? 'bxs-like' : 'bx-like'
-              } forum__category__comment__ic`}
+            className={`bx ${
+              item.userLike ? 'bxs-like' : 'bx-like'
+            } forum__category__comment__ic`}
           ></i>
           {likes} Thích
         </div>
@@ -145,10 +155,10 @@ const ForumsItem = ({ item }: Props) => {
         <>
           {comments.length > 0
             ? comments.map((item) => (
-              <div className='comment__container' key={item.id}>
-                <Comment comment={item} key={item.id} />{' '}
-              </div>
-            ))
+                <div className='comment__container' key={item.id}>
+                  <Comment comment={item} key={item.id} />{' '}
+                </div>
+              ))
             : null}
           <div className='comment__input__container'>
             <VAvatar style={styles.avatar} />

@@ -3,10 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { defaultPost } from '../../../../common/constants/constants'
 import { IPost } from '../../../../common/interfaces/post/IPost'
 import { getPhotoUrl } from '../../../../common/untils/functons'
-import {
-  linkToPosts,
-  routes
-} from '../../../../common/untils/general'
+import { linkToPosts, routes } from '../../../../common/untils/general'
 import AuthorDateViews from '../../../../components/authoDateViews/AuthorDateViews'
 
 interface Props {

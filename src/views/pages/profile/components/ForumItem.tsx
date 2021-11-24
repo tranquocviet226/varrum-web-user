@@ -3,10 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { defaultPost } from '../../../../common/constants/constants'
 import { IPost } from '../../../../common/interfaces/post/IPost'
 import { getPhotoUrl } from '../../../../common/untils/functons'
-import {
-  linkToForum,
-  routes
-} from '../../../../common/untils/general'
+import { linkToForum, routes } from '../../../../common/untils/general'
 import { convertDate } from '../../../../common/untils/helpers'
 import AuthorDateViews from '../../../../components/authoDateViews/AuthorDateViews'
 

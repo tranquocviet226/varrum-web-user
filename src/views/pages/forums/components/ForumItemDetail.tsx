@@ -3,10 +3,7 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { IComment } from '../../../../common/interfaces/forums/IComment'
 import { IPost } from '../../../../common/interfaces/post/IPost'
-import {
-  linkToForum,
-  routes
-} from '../../../../common/untils/general'
+import { linkToForum, routes } from '../../../../common/untils/general'
 import { getUserAvatar, vnDate } from '../../../../common/untils/helpers'
 import VAvatar from '../../../../components/avatar/Avatar'
 import VInput from '../../../../components/input/VInput'
@@ -69,9 +66,9 @@ const ForumsItemDetail = ({ item }: Props) => {
       const children = comments.filter((item) => item.parentId.id)
       parent.map(
         (item) =>
-        (item['childrenComment'] = children.filter(
-          (child) => item.id === child.parentId.id
-        ))
+          (item['childrenComment'] = children.filter(
+            (child) => item.id === child.parentId.id
+          ))
       )
       setComments(parent)
       if (show) setShowComment(!showComment)
@@ -135,8 +132,9 @@ const ForumsItemDetail = ({ item }: Props) => {
           style={{ color: userLike ? '#e61414' : undefined }}
         >
           <i
-            className={`bx ${userLike ? 'bxs-like' : 'bx-like'
-              } forum__category__comment__ic`}
+            className={`bx ${
+              userLike ? 'bxs-like' : 'bx-like'
+            } forum__category__comment__ic`}
           ></i>
           {likes} Thích
         </div>
@@ -157,10 +155,10 @@ const ForumsItemDetail = ({ item }: Props) => {
         <>
           {comments.length > 0
             ? comments.map((item) => (
-              <div className='comment__container' key={item.id}>
-                <Comment comment={item} key={item.id} />{' '}
-              </div>
-            ))
+                <div className='comment__container' key={item.id}>
+                  <Comment comment={item} key={item.id} />{' '}
+                </div>
+              ))
             : null}
           <div className='comment__input__container'>
             <VAvatar style={styles.avatar} />

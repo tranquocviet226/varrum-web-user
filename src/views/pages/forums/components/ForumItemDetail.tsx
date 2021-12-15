@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import ReactQuill from 'react-quill'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { IComment } from '../../../../common/interfaces/forums/IComment'
@@ -122,7 +123,7 @@ const ForumsItemDetail = ({ item }: Props) => {
         {item.title}
       </div>
       <div className='forum__category__content'>
-        <div dangerouslySetInnerHTML={{ __html: item.content }} />
+        <ReactQuill readOnly value={item.content} theme={'bubble'} />
       </div>
       <div className='line'></div>
       <div className='forum__category__comment'>

@@ -123,11 +123,7 @@ const CreateForumsPage = () => {
         style={{ marginTop: 12 }}
       />
       <div className='mt-1'></div>
-      <TextEditor
-        content={content}
-        handleSubmit={handleSubmit}
-        handleChangeContent={(val) => setContent(val)}
-      />
+      <TextEditor content={content} handleSubmit={handleSubmit} />
       <div style={{ marginBottom: 16 }}></div>
     </div>
   )

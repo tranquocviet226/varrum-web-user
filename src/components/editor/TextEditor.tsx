@@ -1,5 +1,4 @@
 import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
 import { getPhotoUrl, parseError } from '../../common/untils/functons'
 import { actionUploadPhoto } from '../../redux/actions/photo/photoAction'
 import VButton from '../button/VButton'
@@ -7,7 +6,6 @@ import VButton from '../button/VButton'
 interface Props {
   content?: string
   handleSubmit?: (val: string) => void
-  handleChangeContent?: (val: string) => void
 }
 
 let quillObj: any = null
@@ -50,7 +48,21 @@ const modules = {
       [{ align: [] }],
       ['link', 'image', 'video'],
       ['clean'],
-      [{ color: [] }]
+      [{ color: [] }],
+      [
+        {
+          background: [
+            '#000000',
+            '#FF0000',
+            '#008000',
+            '#0000FF',
+            '#DCDCDC',
+            '#E3E6E8',
+            '#FFFFFF'
+          ]
+        }
+      ],
+      ['code-block', 'blockquote', 'code']
     ],
     handlers: {
       image: imageHandler
@@ -58,10 +70,10 @@ const modules = {
   }
 }
 
-const TextEditor = ({ content, handleSubmit, handleChangeContent }: Props) => {
+const TextEditor = ({ content, handleSubmit }: Props) => {
   const handleSubmitEditor = () => {
     if (quillObj) {
-      const value = quillObj?.props?.value
+      const value = quillObj?.state?.value
       handleSubmit(value)
     }
   }
@@ -72,8 +84,7 @@ const TextEditor = ({ content, handleSubmit, handleChangeContent }: Props) => {
         ref={(el) => {
           quillObj = el
         }}
-        onChange={handleChangeContent}
-        value={content}
+        defaultValue={content}
         placeholder={'Enter new content here...'}
         modules={modules}
         style={{ height: 580 }}

@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
+import ReactQuill from 'react-quill'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { IComment } from '../../../../common/interfaces/forums/IComment'
@@ -32,7 +33,6 @@ const ForumsItem = ({ item }: Props) => {
   const [comments, setComments] = useState([])
   const [commentValue, setCommentValue] = useState('')
   const [showMore, setShowMore] = useState(false)
-  const containerRef = useRef<HTMLDivElement>()
 
   const handleLike = () => {
     if (auth) dispatch(actionLike(id))
@@ -112,10 +112,7 @@ const ForumsItem = ({ item }: Props) => {
         style={{ maxHeight: showMore ? undefined : 460 }}
         className='forum__category__content'
       >
-        <div
-          ref={containerRef}
-          dangerouslySetInnerHTML={{ __html: item.content }}
-        />
+        <ReactQuill readOnly value={item.content} theme={'bubble'} />
         {!showMore ? (
           <div onClick={() => setShowMore(true)} className='forum__load__more'>
             {' '}

@@ -29,7 +29,7 @@ const CreatePost = () => {
   )
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [content, setContent] = useState('')
+  const [content, setContent] = useState<string | undefined>()
   const [categoriesId, setCategoriesId] = useState<string[]>([])
   const [categoriesSelected, setCategoriesSelected] = useState<string[]>([])
   const [photoId, setPhotoId] = useState('')
@@ -133,11 +133,9 @@ const CreatePost = () => {
         style={{ marginTop: 12 }}
       />
       <div className='mt-1'></div>
-      <TextEditor
-        content={content}
-        handleSubmit={handleSubmit}
-        handleChangeContent={(val) => setContent(val)}
-      />
+      {content !== undefined && (
+        <TextEditor content={content} handleSubmit={handleSubmit} />
+      )}
       <div style={{ marginBottom: 16 }}></div>
     </div>
   )

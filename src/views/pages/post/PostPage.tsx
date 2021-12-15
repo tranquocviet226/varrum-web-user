@@ -13,6 +13,7 @@ import {
 import { AppState } from '../../../redux/reducers/rootReducer'
 import NewPost from '../home/components/new/NewPost'
 import { Helmet } from 'react-helmet-async'
+import ReactQuill from 'react-quill'
 interface Props {
   match: {
     params: { id: string }
@@ -94,7 +95,7 @@ const PostPage = (props: Props) => {
           alt=''
         />
         <div className='mt-2 ql-container-custom'>
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <ReactQuill readOnly value={post.content} theme={'bubble'} />
         </div>
       </div>
     )

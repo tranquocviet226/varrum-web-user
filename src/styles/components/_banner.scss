@@ -77,9 +77,11 @@
     border-radius: 36px;
     @include tablet {
       border-radius: 32px;
+      aspect-ratio: 3;
     }
     @include mobile {
       border-radius: 16px;
+      aspect-ratio: auto;
     }
     @include theme-aware('box-shadow', 'color-shadow');
   }

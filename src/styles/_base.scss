@@ -173,6 +173,10 @@ img {
     height: 250px;
   }
 }
+.ql-editor {
+  padding: 0px;
+  word-break: break-word;
+}
 .css-iqeo3-MuiButtonBase-root-MuiPaginationItem-root {
   @include theme-aware('color', 'color-txt');
   @include theme-aware('border-color', 'color-txt');

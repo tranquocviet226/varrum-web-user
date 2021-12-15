@@ -153,14 +153,14 @@ img {
 .hover__icon:hover {
   @include theme-aware('background-color', 'bg-hover-icon');
 }
-.ql-container-custom {
-  font-size: 15px;
+.ql-container {
+  font-size: 15px !important;
 
   @include tablet {
-    font-size: 14px;
+    font-size: 14px !important;
   }
   @include mobile {
-    font-size: 14px;
+    font-size: 14px !important;
   }
 }
 .ql-video {

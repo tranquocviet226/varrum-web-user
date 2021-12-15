@@ -87,7 +87,7 @@ const TextEditor = ({ content, handleSubmit }: Props) => {
         defaultValue={content}
         placeholder={'Enter new content here...'}
         modules={modules}
-        style={{ height: 580 }}
+        style={{ height: 500 }}
       />
       <VButton
         style={{ marginTop: 64 }}

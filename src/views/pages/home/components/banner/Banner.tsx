@@ -4,12 +4,13 @@ import { getPhotoUrl } from '../../../../../common/untils/functons'
 import { linkToPosts } from '../../../../../common/untils/general'
 import AuthorDateViews from '../../../../../components/authoDateViews/AuthorDateViews'
 import CategoryCard from '../../../../../components/categoryCard/CategoryCard'
-
+import { useHistory } from 'react-router'
 interface Props {
   post: IPost
 }
 
 const Banner = ({ post }: Props) => {
+  const history = useHistory()
   const link = linkToPosts(post.id)
   return (
     <div className='banner__container'>
@@ -20,7 +21,10 @@ const Banner = ({ post }: Props) => {
           alt=''
         ></img>
       </Link>
-      <div className='banner__overlay'>
+      <div
+        onClick={() => history.push(linkToPosts(post.id))}
+        className='banner__overlay'
+      >
         <div className='banner__overlay__container'>
           <div style={{ display: 'flex' }}>
             {post.categories.map((item) => (

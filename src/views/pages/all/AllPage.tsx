@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { bannerImgName } from '../../../common/constants/constants'
 import { ECategory } from '../../../common/enums/ECategory'
 import { IPost } from '../../../common/interfaces/post/IPost'
 import { routes } from '../../../common/untils/general'
@@ -12,7 +11,6 @@ import { actionPaginate } from '../../../redux/actions/pagination/paginateAction
 import { EPostActions } from '../../../redux/actions/post/EPostActions'
 import { actionFetchPosts } from '../../../redux/actions/post/postAction'
 import { AppState } from '../../../redux/reducers/rootReducer'
-import Ads1 from '../home/components/ads/Ads1'
 import NewPost from '../home/components/new/NewPost'
 import CategoryPostCard from '../news/components/CategoryPostCard'
 
@@ -76,12 +74,10 @@ const AllPage = () => {
               {randomPosts.slice(5, 9).map((post) => (
                 <NewsCard post={post} key={post.id} />
               ))}
-              {/* <Ads1 urlName={bannerImgName[2]} /> */}
             </>
           ) : null}
         </div>
       </div>
-      <Ads1 urlName={bannerImgName[1]} style={{ height: 180 }} />
     </div>
   )
 }

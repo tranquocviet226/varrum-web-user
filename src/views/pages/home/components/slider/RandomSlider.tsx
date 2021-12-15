@@ -10,10 +10,11 @@ interface Props {
 }
 
 const RandomSlider = ({ posts }: Props) => {
+  const { innerWidth: width } = window
   return (
     <div style={{ marginLeft: -8, marginRight: -8, marginTop: 8 }}>
       <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-        <Carousel show={4}>
+        <Carousel show={width <= 600 ? 3 : 4}>
           {posts.map((item) => (
             <div key={item.id} className='trending'>
               <div className='trending__slider__container'>
